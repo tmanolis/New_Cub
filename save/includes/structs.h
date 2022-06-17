@@ -53,7 +53,6 @@ typedef struct s_data
 	t_graphics	graphics;
 	t_map		map;
 	t_img		img;
-
 }				t_data;
 
 #endif

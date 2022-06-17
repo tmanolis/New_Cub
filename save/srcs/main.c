@@ -2,9 +2,9 @@
 
 int	worldMap[24][24] = {
 							{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+							{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+							{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -44,16 +44,7 @@ int	main(int argc, char **argv)
 		if (check_info_retrieved(&data.graphics) == FAILURE)
 			return (print_error(MSG_INVALID_INFO) && free_for_your_life(&data));
 		check_map_retrieved(&data.map, data.map.map);
-		// data.map.pos_x = (double)data.map.p_x + 0.5;
-		// data.map.pos_y = (double)data.map.p_y + 0.5;
-		data.map.pos_x = 2;
-		data.map.pos_y = 2;
-		data.map.dir_x = -1;
-		data.map.dir_y = 0;
-		data.map.plane_x = 0;
-		data.map.plane_y = 0.66;
-		data.map.move_speed = 0.05; // test, valeur arbitraire
-		data.map.rotate_speed = 0.05;
+		init_raycasting(&data.map);
 		printf("x : %f | y : %f\n", data.map.pos_x, data.map.pos_y);
 		init_window(&data);
 		mlx_loop_and_hooks(data);

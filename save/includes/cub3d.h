@@ -104,6 +104,7 @@ void	free_double_array(char **tab);
 int		free_for_your_life(t_data *data);
 // 05_UTILS - init_data.c
 void	init_data(t_data *data);
+void	init_raycasting(t_map *map);
 // 05_UTILS - utils_functions.c
 int		is_a_white_space(char c);
 int		print_error(char *str);
