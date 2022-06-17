@@ -19,7 +19,7 @@ int	load_xpm(t_data *data, char *path, int *tex_buf, t_img *img)
 		x = 0;
 		while (x < img->x)
 		{
-			tex_buf[y * img->x + x] = img->addr[y * img->x + x];
+			tex_buf[y * 64 + x] = (int)img->addr[y * 64 + x];
 			x++;
 		}
 		y++;
@@ -37,7 +37,7 @@ int	init_textures(t_data *data)
 	data->tex.we = (int *)malloc(sizeof(int) * T_HEIGHT * T_WIDTH);
 	data->tex.ea = (int *)malloc(sizeof(int) * T_HEIGHT * T_WIDTH);
 	
-	load_xpm(data, data->graphics.dir_NO, data->tex.no, &img);
+	load_xpm(data, "assets/wood.xpm", data->tex.no, &img);
 	load_xpm(data, data->graphics.dir_SO, data->tex.so, &img);
 	load_xpm(data, data->graphics.dir_WE, data->tex.we, &img);
 	load_xpm(data, data->graphics.dir_EA, data->tex.ea, &img);

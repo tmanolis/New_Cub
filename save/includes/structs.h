@@ -57,8 +57,8 @@ typedef struct s_map
 typedef struct	s_raycast
 {
 	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
+	double	rayDirX;	//direction x
+	double	rayDirY;	//direction y
 	int		mapX;
 	int		mapY;
 	double	sideDistX;
@@ -69,7 +69,7 @@ typedef struct	s_raycast
 	int		stepX;
 	int		stepY;
 	int		hit;
-	int		side;
+	int		side;		// facing NO/SO or EA/WE
 	int		lineHeight;
 	int		drawStart;
 	int		drawEnd;

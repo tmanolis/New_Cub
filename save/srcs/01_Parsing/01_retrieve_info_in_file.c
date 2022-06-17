@@ -45,6 +45,7 @@ static char	*get_path_of_texture(char *line, int j)
 		free(path);
 		path = NULL;
 	}
+	printf("%s\n", path);
 	return (path);
 }
 

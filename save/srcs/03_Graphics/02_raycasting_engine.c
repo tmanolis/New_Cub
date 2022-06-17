@@ -138,25 +138,69 @@ void	calc(t_data *data)
 		if(ray->drawEnd >= data->win_height)
 			ray->drawEnd = data->win_height - 1;
 
-		// int	color;
-		// printf("je tombe sur cette valeur : %c\n", worldMap[mapX][mapY]);
-		if (worldMap[ray->mapX][ray->mapY] == 1)
-			ray->color = PINK; // rouge
-		// else if (map->map[mapX][mapY] == '2')
-		// 	color = 0x00FF00;  // vert
-		// else if (map->map[mapX][mapY] == 3)
-		// 	color = 0x0000FF; // bleu
-		// else if (map->map[mapX][mapY] == 4)
-		// 	color = 0xFFFFFF; // white
-		// else if (map->map[mapX][mapY] == 5)
-		// 	color = 0xFFFF00; // jaune
-		else
-			ray->color = PURPLE;
-		if (ray->side == 1)
-			ray->color = ray->color / 2;
+		// // int	color;
+		// // printf("je tombe sur cette valeur : %c\n", worldMap[mapX][mapY]);
+		// if (worldMap[ray->mapX][ray->mapY] == 1)
+		// 	ray->color = PINK; // rouge
+		// // else if (map->map[mapX][mapY] == '2')
+		// // 	color = 0x00FF00;  // vert
+		// // else if (map->map[mapX][mapY] == 3)
+		// // 	color = 0x0000FF; // bleu
+		// // else if (map->map[mapX][mapY] == 4)
+		// // 	color = 0xFFFFFF; // white
+		// // else if (map->map[mapX][mapY] == 5)
+		// // 	color = 0xFFFF00; // jaune
+		// else
+		// 	ray->color = PURPLE;
+		// if (ray->side == 1)
+		// 	ray->color = ray->color / 2;
 
-		verLine(&bite, x, ray->drawStart, ray->drawEnd, ray->color);
+		// verLine(&bite, x, ray->drawStart, ray->drawEnd, ray->color);
 		
+		double wallX;
+		if (ray->side == 0)
+			wallX = map->pos_y + ray->perpWallDist * ray->rayDirY;
+		else
+			wallX = map->pos_x + ray->perpWallDist * ray->rayDirX;
+		wallX -= floor(wallX);
+
+		// x coordinate on the texture
+		int texX = (int)(wallX * (double)T_WIDTH);
+		if (ray->side == 0 && ray->rayDirX > 0)
+			texX = T_WIDTH - texX - 1;
+		if (ray->side == 1 && ray->rayDirY < 0)
+			texX = T_WIDTH - texX - 1;
+
+		// How much to increase the texture coordinate perscreen pixel
+		double step = 1.0 * T_HEIGHT / ray->lineHeight;
+
+		// CEILING
+		int y = 0;
+		while (y < ray->drawStart)
+		{
+		my_mlx_pixel_put(&bite, x, y, 0xFFFF00);
+		y++;
+		}
+		// Starting texture coordinate
+		
+		double texPos = (ray->drawStart - W_HEIGHT / 2 + ray->lineHeight / 2) * step;
+		for (int y = ray->drawStart; y < ray->drawEnd; y++)
+		{
+			// Cast the texture coordinate to integer, and mask with (T_HEIGHT - 1) in case of overflow
+			int texY = (int)texPos & (T_HEIGHT - 1);
+			texPos += step;
+			int color = data->tex.no[T_WIDTH * texY + texX];
+			// make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+			if (ray->side == 1)
+				color = (color >> 1) & 8355711;
+			my_mlx_pixel_put(&bite, x, y, color);
+		}
+		// FLOOR
+		y = ray->drawEnd;
+		while (y < W_HEIGHT) {
+		my_mlx_pixel_put(&bite, x, y, BLACK);
+		y++;
+		}
 		x++;
 	}
 
