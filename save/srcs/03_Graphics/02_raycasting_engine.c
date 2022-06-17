@@ -182,7 +182,7 @@ void	calc(t_data *data)
 		y++;
 		}
 		// Starting texture coordinate
-		
+		// TODO: le calcul de texPos diff du code de Satcheen a checker
 		double texPos = (ray->drawStart - W_HEIGHT / 2 + ray->lineHeight / 2) * step;
 		for (int y = ray->drawStart; y < ray->drawEnd; y++)
 		{
