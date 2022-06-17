@@ -17,7 +17,7 @@ void	free_double_array(char **tab)
 	}
 }
 
-void	free_graphics(t_graphics *graphics)
+static void	free_graphics(t_graphics *graphics)
 {
 	if (graphics->dir_NO)
 		free(graphics->dir_NO);
@@ -33,7 +33,7 @@ void	free_graphics(t_graphics *graphics)
 		free(graphics->ceiling);
 }
 
-void	free_map(t_map *map)
+static void	free_map(t_map *map)
 {
 	if (map->fd > 0)
 		close(map->fd);
@@ -43,11 +43,25 @@ void	free_map(t_map *map)
 		free_double_array(map->map);
 }
 
+
+static void	free_textures(t_tex tex)
+{
+	if (tex.no)
+		free(tex.no);
+	if (tex.so)
+		free(tex.so);
+	if (tex.ea)
+		free(tex.ea);
+	if (tex.we)
+		free(tex.we);
+}
+
 int	free_for_your_life(t_data *data)
 {
 	free_graphics(&data->graphics);
 	free_map(&data->map);
 	if (data->mlx)
 		free(data->mlx);
+	free_textures(data->tex);
 	return (FAILURE);
 }

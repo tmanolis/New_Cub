@@ -40,6 +40,11 @@ static int	check_existence_of_path(char *path)
 	return (SUCCESS);
 }	
 
+// int	convert_rgb_to_hex()
+// {
+
+// }
+
 int	check_info_retrieved(t_graphics *graphics)
 {
 	// printf("dis donc\n");
@@ -65,5 +70,7 @@ int	check_info_retrieved(t_graphics *graphics)
 		|| check_input_of_rgb(graphics->ceiling) == FAILURE)
 		return (FAILURE);
 	printf("tout est bon!\n");
+	// graphics->hex_floor = convert_rgb_to_hex(graphics->floor);
+	// graphics->hex_ceiling = convert_rgb_to_hex(graphics->ceiling);
 	return (SUCCESS);
 }

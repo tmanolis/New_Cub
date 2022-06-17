@@ -1,8 +1,6 @@
 #include "cub3d.h"
 
 
-
-
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char    *pixel;
@@ -38,13 +36,14 @@ void	verLine(t_img *img, int x, int y1, int y2, int color)
 
 void	calc(t_data *data)
 {
-	t_map	*map;
-	int	x;
+	t_map		*map;
+	t_raycast	*ray;
+	t_img		bite;
+	int			x;
 
 	map = &data->map;
+	ray = &data->ray;
 	x = 0;
-
-	t_img	bite;
 
 	bite.mlx_img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	bite.addr = mlx_get_data_addr(bite.mlx_img, &data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
@@ -54,95 +53,95 @@ void	calc(t_data *data)
 
 	while (x < data->win_width)
 	{
-		double cameraX = 2 * x / (double)data->win_width - 1;
-		double rayDirX = map->dir_x + map->plane_x * cameraX;
-		double rayDirY = map->dir_y + map->plane_y * cameraX;
+		ray->cameraX = 2 * x / (double)data->win_width - 1;
+		ray->rayDirX = map->dir_x + map->plane_x * ray->cameraX;
+		ray->rayDirY = map->dir_y + map->plane_y * ray->cameraX;
 		
-		int mapX = (int)map->pos_x;
-		int mapY = (int)map->pos_y;
+		ray->mapX = (int)map->pos_x;
+		ray->mapY = (int)map->pos_y;
 
-		//length of ray from current position to next x or y-side
-		double sideDistX;
-		double sideDistY;
+		// //length of ray from current position to next x or y-side
+		// double sideDistX;
+		// double sideDistY;
 		
 		 //length of ray from one x or y-side to next x or y-side
-		double deltaDistX = fabs(1 / rayDirX);
-		double deltaDistY = fabs(1 / rayDirY);
-		double perpWallDist;
+		ray->deltaDistX = fabs(1 / ray->rayDirX);
+		ray->deltaDistY = fabs(1 / ray->rayDirY);
+		// double perpWallDist;
 		
 		//what direction to step in x or y-direction (either +1 or -1)
-		int stepX;
-		int stepY;
+		// int stepX;
+		// int stepY;
 		
-		int hit = 0; //was there a wall hit?
-		int side; //was a NS or a EW wall hit?
+		ray->hit = 0; //was there a wall hit?
+		// int side; //was a NS or a EW wall hit?
 
-		if (rayDirX < 0)
+		if (ray->rayDirX < 0)
 		{
-			stepX = -1;
-			sideDistX = (map->pos_x - mapX) * deltaDistX;
+			ray->stepX = -1;
+			ray->sideDistX = (map->pos_x - ray->mapX) * ray->deltaDistX;
 		}
 		else
 		{
-			stepX = 1;
-			sideDistX = (mapX + 1.0 - map->pos_x) * deltaDistX;
+			ray->stepX = 1;
+			ray->sideDistX = (ray->mapX + 1.0 - map->pos_x) * ray->deltaDistX;
 		}
-		if (rayDirY < 0)
+		if (ray->rayDirY < 0)
 		{
-			stepY = -1;
-			sideDistY = (map->pos_y - mapY) * deltaDistY;
+			ray->stepY = -1;
+			ray->sideDistY = (map->pos_y - ray->mapY) * ray->deltaDistY;
 		}
 		else
 		{
-			stepY = 1;
-			sideDistY = (mapY + 1.0 - map->pos_y) * deltaDistY;
+			ray->stepY = 1;
+			ray->sideDistY = (ray->mapY + 1.0 - map->pos_y) * ray->deltaDistY;
 		}
 
-		while (hit == 0)
+		while (ray->hit == 0)
 		{
 			//jump to next map square, OR in x-direction, OR in y-direction
-			if (sideDistX < sideDistY)
+			if (ray->sideDistX < ray->sideDistY)
 			{
-				sideDistX += deltaDistX;
-				mapX += stepX;
-				side = 0;
+				ray->sideDistX += ray->deltaDistX;
+				ray->mapX += ray->stepX;
+				ray->side = 0;
 			}
 			else
 			{
-				sideDistY += deltaDistY;
-				mapY += stepY;
-				side = 1;
+				ray->sideDistY += ray->deltaDistY;
+				ray->mapY += ray->stepY;
+				ray->side = 1;
 			}
 			//Check if ray has hit a wall
 			
-			if (worldMap[mapX][mapY] == 1) 
-				hit = 1;
+			if (worldMap[ray->mapX][ray->mapY] == 1) 
+				ray->hit = 1;
 			// else if (worldMap[mapX][mapY] == 2)
 			// {
 			// 	printf("boucle hit : %d\n", worldMap[mapX][mapY]);
 			// 	hit = 1;
 			// }
 		}
-		if (side == 0)
-			perpWallDist = (mapX - map->pos_x + (1 - stepX) / 2) / rayDirX;
+		if (ray->side == 0)
+			ray->perpWallDist = (ray->mapX - map->pos_x + (1 - ray->stepX) / 2) / ray->rayDirX;
 		else
-			perpWallDist = (mapY - map->pos_y + (1 - stepY) / 2) / rayDirY;
+			ray->perpWallDist = (ray->mapY - map->pos_y + (1 - ray->stepY) / 2) / ray->rayDirY;
 
 		//Calculate height of line to draw on screen
-		int lineHeight = (int)(data->win_height / perpWallDist);
+		ray->lineHeight = (int)(data->win_height / ray->perpWallDist);
 
 		//calculate lowest and highest pixel to fill in current stripe
-		int drawStart = -lineHeight / 2 + data->win_height / 2;
-		if(drawStart < 0)
-			drawStart = 0;
-		int drawEnd = lineHeight / 2 + data->win_height / 2;
-		if(drawEnd >= data->win_height)
-			drawEnd = data->win_height - 1;
+		ray->drawStart = -(ray->lineHeight) / 2 + data->win_height / 2;
+		if(ray->drawStart < 0)
+			ray->drawStart = 0;
+		ray->drawEnd = ray->lineHeight / 2 + data->win_height / 2;
+		if(ray->drawEnd >= data->win_height)
+			ray->drawEnd = data->win_height - 1;
 
-		int	color;
+		// int	color;
 		// printf("je tombe sur cette valeur : %c\n", worldMap[mapX][mapY]);
-		if (worldMap[mapX][mapY] == 1)
-			color = PINK; // rouge
+		if (worldMap[ray->mapX][ray->mapY] == 1)
+			ray->color = PINK; // rouge
 		// else if (map->map[mapX][mapY] == '2')
 		// 	color = 0x00FF00;  // vert
 		// else if (map->map[mapX][mapY] == 3)
@@ -152,11 +151,11 @@ void	calc(t_data *data)
 		// else if (map->map[mapX][mapY] == 5)
 		// 	color = 0xFFFF00; // jaune
 		else
-			color = PURPLE;
-		if (side == 1)
-			color = color / 2;
+			ray->color = PURPLE;
+		if (ray->side == 1)
+			ray->color = ray->color / 2;
 
-		verLine(&bite, x, drawStart, drawEnd, color);
+		verLine(&bite, x, ray->drawStart, ray->drawEnd, ray->color);
 		
 		x++;
 	}

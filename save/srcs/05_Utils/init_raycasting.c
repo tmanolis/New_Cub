@@ -37,5 +37,5 @@ void	init_raycasting(t_map *map)
 	map->plane_y = 0.66;
 	set_player_direction(map, map->p_direction);
 	map->move_speed = 0.05; // test, valeur arbitraire
-	map->rotate_speed = 0.05;
+	map->rotate_speed = 0.02;
 }

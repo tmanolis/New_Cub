@@ -42,6 +42,8 @@
 // MLX
 # define W_HEIGHT 512
 # define W_WIDTH 1024
+# define T_HEIGHT 64 // tjrs à la ligne 4 du .xpm
+# define T_WIDTH 64
 # define CELL_SIZE 8
 
 // COLORS
@@ -96,6 +98,8 @@ int		render(t_data *data);
 void	draw_the_2d_map(t_data *data);
 // 03_GRAPHICS - 02_raycasting_engine.c
 int		raycasting_loop(t_data *data);
+// 03_GRAPHICS - 03_raycasting_utils.c
+int		init_textures(t_data *data);
 // 03_GRAPHICS - 04_2d_map.c
 void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int color);
 

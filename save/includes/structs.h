@@ -8,7 +8,9 @@ typedef struct	s_graphics
 	char	*dir_WE;
 	char	*dir_EA;
 	int		*floor;
+	int		hex_floor;
 	int		*ceiling;
+	int		hex_ceiling;
 }				t_graphics;
 
 typedef struct	s_img
@@ -21,6 +23,14 @@ typedef struct	s_img
 	int		x;
 	int		y;
 }				t_img;
+
+typedef struct s_tex
+{
+	int		*no;
+	int		*so;
+	int		*ea;
+	int		*we;
+}				t_tex;
 
 typedef struct s_map
 {
@@ -44,6 +54,28 @@ typedef struct s_map
 	double		rotate_speed;
 }				t_map;
 
+typedef struct	s_raycast
+{
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	int		mapX;
+	int		mapY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	int		color;
+}				t_raycast;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -53,6 +85,8 @@ typedef struct s_data
 	t_graphics	graphics;
 	t_map		map;
 	t_img		img;
+	t_tex		tex;
+	t_raycast	ray;
 }				t_data;
 
 #endif

@@ -28,7 +28,6 @@ int	worldMap[24][24] = {
 						};
 
 
-
 int	main(int argc, char **argv)
 {
 	t_data data;
@@ -47,6 +46,7 @@ int	main(int argc, char **argv)
 		init_raycasting(&data.map);
 		printf("x : %f | y : %f\n", data.map.pos_x, data.map.pos_y);
 		init_window(&data);
+		init_textures(&data);
 		mlx_loop_and_hooks(data);
 		// mlx_destroy_display(data.mlx);
 		free_for_your_life(&data);
