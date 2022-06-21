@@ -113,12 +113,14 @@ void	calc(t_data *data)
 				ray->side = 1;
 			}
 			//Check if ray has hit a wall
-			
-			if (worldMap[ray->mapX][ray->mapY] == 1) 
+			printf("MapX : %d || MapY : %d\n", ray->mapX, ray->mapY);
+			// printf("char : %c\n", map->map[ray->mapX][ray->mapY])
+			//BUG: Si le joueur est situe sur l'axe x plus loin, segfault
+			if (map->map[ray->mapX][ray->mapY] == '1') 
 				ray->hit = 1;
-			// else if (worldMap[mapX][mapY] == 2)
+			// else if (map->map[mapX][mapY] == 2)
 			// {
-			// 	printf("boucle hit : %d\n", worldMap[mapX][mapY]);
+			// 	printf("boucle hit : %d\n", map->map[mapX][mapY]);
 			// 	hit = 1;
 			// }
 		}
@@ -139,8 +141,8 @@ void	calc(t_data *data)
 			ray->drawEnd = data->win_height - 1;
 
 		// // int	color;
-		// // printf("je tombe sur cette valeur : %c\n", worldMap[mapX][mapY]);
-		// if (worldMap[ray->mapX][ray->mapY] == 1)
+		// // printf("je tombe sur cette valeur : %c\n", map->map[mapX][mapY]);
+		// if (map->map[ray->mapX][ray->mapY] == 1)
 		// 	ray->color = PINK; // rouge
 		// // else if (map->map[mapX][mapY] == '2')
 		// // 	color = 0x00FF00;  // vert

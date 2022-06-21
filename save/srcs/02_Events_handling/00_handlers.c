@@ -47,33 +47,33 @@ int	key_press(int keysym, t_data *data)
 	old_plane_x = data->map.plane_x;
 	if (keysym == 'w')
 	{
-		if (worldMap[(int)(data->map.pos_x + data->map.dir_x * data->map.move_speed)][(int)data->map.pos_y] != 1)
+		if (data->map.map[(int)(data->map.pos_x + data->map.dir_x * data->map.move_speed)][(int)data->map.pos_y] != '1')
 			data->map.pos_x += data->map.dir_x * data->map.move_speed;
-		if (worldMap[(int)(data->map.pos_x)][(int)(data->map.pos_y + data->map.dir_y * data->map.move_speed)] != 1)
+		if (data->map.map[(int)(data->map.pos_x)][(int)(data->map.pos_y + data->map.dir_y * data->map.move_speed)] != '1')
 			data->map.pos_y += data->map.dir_y * data->map.move_speed;
 
 	}
 	if (keysym == 's')
 	{
-		if (worldMap[(int)(data->map.pos_x - data->map.dir_x * data->map.move_speed)][(int)(data->map.pos_y)] != 1)
+		if (data->map.map[(int)(data->map.pos_x - data->map.dir_x * data->map.move_speed)][(int)(data->map.pos_y)] != '1')
 			data->map.pos_x -= data->map.dir_x * data->map.move_speed;
-		if (worldMap[(int)(data->map.pos_x)][(int)(data->map.pos_y + data->map.dir_y * data->map.move_speed)] != 1)
+		if (data->map.map[(int)(data->map.pos_x)][(int)(data->map.pos_y + data->map.dir_y * data->map.move_speed)] != '1')
 			data->map.pos_y -= data->map.dir_y * data->map.move_speed;
 	}
 	// BUG: trouver une maniere plus organique de changer la valeur du dir_y. x pas sensé bouger
 	if (keysym == 'a')
 	{
 		printf("Valeur de dir_y : %f\n", data->map.dir_y);
-		if (worldMap[(int)(data->map.pos_x - data->map.dir_x * data->map.move_speed)][(int)(data->map.pos_y)] != 1)
+		if (data->map.map[(int)(data->map.pos_x - data->map.dir_x * data->map.move_speed)][(int)(data->map.pos_y)] != '1')
 			data->map.pos_x -= data->map.dir_y * data->map.move_speed;
-		if (worldMap[(int)(data->map.pos_x)][(int)(data->map.pos_y + data->map.dir_y * data->map.move_speed)] != 1)
+		if (data->map.map[(int)(data->map.pos_x)][(int)(data->map.pos_y + data->map.dir_y * data->map.move_speed)] != '1')
 			data->map.pos_y += data->map.dir_x * data->map.move_speed;
 	}
 	if (keysym == 'd')
 	{
-		if (worldMap[(int)(data->map.pos_x + data->map.dir_x * data->map.move_speed)][(int)(data->map.pos_y)] != 1)
+		if (data->map.map[(int)(data->map.pos_x + data->map.dir_x * data->map.move_speed)][(int)(data->map.pos_y)] != '1')
 			data->map.pos_x += data->map.dir_y * data->map.move_speed;
-		if (worldMap[(int)(data->map.pos_x)][(int)(data->map.pos_y - data->map.dir_y * data->map.move_speed)] != 1)
+		if (data->map.map[(int)(data->map.pos_x)][(int)(data->map.pos_y - data->map.dir_y * data->map.move_speed)] != '1')
 			data->map.pos_y -= data->map.dir_x * data->map.move_speed;
 	}
 	//rotate to the right
