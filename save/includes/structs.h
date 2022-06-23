@@ -3,14 +3,14 @@
 
 typedef struct	s_graphics
 {
-	char	*dir_NO;
-	char	*dir_SO;
-	char	*dir_WE;
-	char	*dir_EA;
-	int		*floor;
-	unsigned long int		hex_floor;
-	int		*ceiling;
-	unsigned long int		hex_ceiling;
+	char				*dir_NO;
+	char				*dir_SO;
+	char				*dir_WE;
+	char				*dir_EA;
+	int					*floor;
+	unsigned long		hex_floor;
+	int					*ceiling;
+	unsigned long		hex_ceiling;
 }				t_graphics;
 
 typedef struct	s_img
