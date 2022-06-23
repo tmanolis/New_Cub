@@ -40,16 +40,6 @@ static int	check_existence_of_path(char *path)
 	return (SUCCESS);
 }
 
-
-void	print_nb_base(unsigned long int nb, char *base)
-{
-	if (nb > 15)
-	{
-		print_nb_base(nb / 16, base);
-	}
-	ft_putchar_fd(base[nb % 16], 1);
-}
-
 unsigned long	convert_rgb_to_hex(int *rgb_array) // fc03ba // ce qu'on veut : fcba03
 {
 	unsigned long	result;
@@ -77,10 +67,6 @@ int	check_info_retrieved(t_graphics *graphics)
 		|| check_input_of_rgb(graphics->ceiling) == FAILURE)
 		return (FAILURE);
 	graphics->hex_floor = convert_rgb_to_hex(graphics->floor);
-	print_nb_base(graphics->hex_floor, "0123456789abcdef");
 	graphics->hex_ceiling = convert_rgb_to_hex(graphics->ceiling);
-	printf("tout est bon!\n");
-	print_nb_base(graphics->hex_ceiling, "0123456789abcdef");
-	
 	return (SUCCESS);
 }
