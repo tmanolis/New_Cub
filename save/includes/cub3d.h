@@ -99,8 +99,8 @@ int		render(t_data *data);
 void	draw_the_2d_map(t_data *data);
 // 03_GRAPHICS - 02_raycasting_engine.c
 int		raycasting_loop(t_data *data);
-// 03_GRAPHICS - 03_raycasting_utils.c
-int		init_textures(t_data *data);
+// 03_GRAPHICS - 04_init_textures.c
+void	init_textures(t_data *data);
 // 03_GRAPHICS - 04_2d_map.c
 void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int color);
 

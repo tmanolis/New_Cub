@@ -48,6 +48,7 @@ SRCS = main.c 									\
 	03_Graphics/01_raycasting_init.c 			\
 	03_Graphics/02_raycasting_engine.c 			\
 	03_Graphics/03_raycasting_utils.c 			\
+	03_Graphics/04_init_textures.c				\
 	03_Graphics/04_2d_map.c 					\
 	05_Utils/gnl/get_next_line.c 				\
 	05_Utils/gnl/get_next_line_utils.c 			\
