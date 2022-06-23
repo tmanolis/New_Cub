@@ -8,9 +8,9 @@ typedef struct	s_graphics
 	char	*dir_WE;
 	char	*dir_EA;
 	int		*floor;
-	int		hex_floor;
+	unsigned long int		hex_floor;
 	int		*ceiling;
-	int		hex_ceiling;
+	unsigned long int		hex_ceiling;
 }				t_graphics;
 
 typedef struct	s_img

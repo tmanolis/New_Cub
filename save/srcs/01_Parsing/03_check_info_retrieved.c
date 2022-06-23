@@ -38,27 +38,34 @@ static int	check_existence_of_path(char *path)
 		return (FAILURE);
 	}
 	return (SUCCESS);
-}	
+}
 
-// int	convert_rgb_to_hex()
-// {
 
-// }
+void	print_nb_base(unsigned long int nb, char *base)
+{
+	if (nb > 15)
+	{
+		print_nb_base(nb / 16, base);
+	}
+	ft_putchar_fd(base[nb % 16], 1);
+}
+
+unsigned long	convert_rgb_to_hex(int *rgb_array) // fc03ba // ce qu'on veut : fcba03
+{
+	unsigned long	result;
+	int				r;
+	int				g;
+	int				b;
+
+	r = rgb_array[0];
+	g = rgb_array[1];
+	b = rgb_array[2];
+	result = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+    return (result);
+}
 
 int	check_info_retrieved(t_graphics *graphics)
 {
-	// printf("dis donc\n");
-	// printf("VOICI LES DONNEES RECUP :\nDirections: NO : %s | SO : %s | WE : %s | EA : %s\n", graphics->dir_NO, graphics->dir_SO, graphics->dir_WE, graphics->dir_EA);
-	// if (graphics->floor)
-	// {
-	// 	for (int k = 0; k < 3; k++)
-	// 		printf("floor: %d => |%d|\n", k, graphics->floor[k]);
-	// }
-	// if (graphics->ceiling)
-	// {
-	// 	for (int l = 0; l < 3; l++) // PB avec le 0, qui est genre la "fin" du int * et du coup s'imprime pas
-	// 		printf("ceiling: %d => |%d|\n", l, graphics->ceiling[l]);
-	// }
 	if (!graphics->dir_NO || !graphics->dir_SO || !graphics->dir_WE
 		|| !graphics->dir_EA || !graphics->floor || !graphics->ceiling)
 		return (FAILURE);
@@ -69,8 +76,11 @@ int	check_info_retrieved(t_graphics *graphics)
 		|| check_input_of_rgb(graphics->floor) == FAILURE
 		|| check_input_of_rgb(graphics->ceiling) == FAILURE)
 		return (FAILURE);
+	graphics->hex_floor = convert_rgb_to_hex(graphics->floor);
+	print_nb_base(graphics->hex_floor, "0123456789abcdef");
+	graphics->hex_ceiling = convert_rgb_to_hex(graphics->ceiling);
 	printf("tout est bon!\n");
-	// graphics->hex_floor = convert_rgb_to_hex(graphics->floor);
-	// graphics->hex_ceiling = convert_rgb_to_hex(graphics->ceiling);
+	print_nb_base(graphics->hex_ceiling, "0123456789abcdef");
+	
 	return (SUCCESS);
 }

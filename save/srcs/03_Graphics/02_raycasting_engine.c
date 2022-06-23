@@ -178,8 +178,9 @@ void	calc(t_data *data)
 		int y = 0;
 		while (y < ray->drawStart)
 		{
-		my_mlx_pixel_put(&bite, x, y, 0xFFFF00);
-		y++;
+		// my_mlx_pixel_put(&bite, x, y, 0xFFFF00);
+			my_mlx_pixel_put(&bite, x, y, data->graphics.hex_ceiling);
+			y++;
 		}
 		// Starting texture coordinate
 		// TODO: le calcul de texPos diff du code de Satcheen a checker
@@ -198,7 +199,7 @@ void	calc(t_data *data)
 		// FLOOR
 		y = ray->drawEnd;
 		while (y < W_HEIGHT) {
-		my_mlx_pixel_put(&bite, x, y, BLACK);
+		my_mlx_pixel_put(&bite, x, y, data->graphics.hex_floor);
 		y++;
 		}
 		x++;
