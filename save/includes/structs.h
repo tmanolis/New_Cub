@@ -26,10 +26,10 @@ typedef struct	s_img
 
 typedef struct s_tex
 {
-	int		*no;
-	int		*so;
-	int		*ea;
-	int		*we;
+	t_img	ea;
+	t_img	we;
+	t_img	no;
+	t_img	so;
 }				t_tex;
 
 typedef struct s_map

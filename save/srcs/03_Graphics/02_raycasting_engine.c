@@ -1,5 +1,13 @@
 #include "cub3d.h"
 
+int	rgb_to_hex(int r, int g, int b)
+{
+	int	color;
+
+	color = ((int)(r & 0xff) << 16) + ((int)(g & 0xff) << 8)
+		+ (int)(b & 0xff);
+	return (color);
+}
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -184,16 +192,31 @@ void	calc(t_data *data)
 		}
 		// Starting texture coordinate
 		// TODO: le calcul de texPos diff du code de Satcheen a checker
-		double texPos = (ray->drawStart - W_HEIGHT / 2 + ray->lineHeight / 2) * step;
+		// double texPos = (ray->drawStart - W_HEIGHT / 2 + ray->lineHeight / 2) * step;
 		for (int y = ray->drawStart; y < ray->drawEnd; y++)
 		{
 			// Cast the texture coordinate to integer, and mask with (T_HEIGHT - 1) in case of overflow
-			int texY = (int)texPos & (T_HEIGHT - 1);
-			texPos += step;
-			int color = data->tex.no[T_WIDTH * texY + texX];
-			// make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+			// int texY = (int)texPos & (T_HEIGHT - 1);
+			// texPos += step;
+			// int color = data->tex.no.addr[T_WIDTH * texY + texX];
+			int color;
+			int	r;
+			int	g;
+			int	b;
+			r = data->tex.no.addr[(int)(wallX * T_WIDTH) * (data->tex.no.bits_per_pixel >> 3)
+				+ 2 + (int)((y - ray->drawStart * 1.0) / ray->lineHeight
+					* T_HEIGHT) * data->tex.no.line_length];
+			g = data->tex.no.addr[(int)(wallX * T_WIDTH) * (data->tex.no.bits_per_pixel >> 3)
+				+ 1 + (int)((y - ray->drawStart * 1.0)
+					/ ray->lineHeight * T_HEIGHT) *data->tex.no.line_length];
+			b = data->tex.no.addr[(int)(wallX * T_WIDTH) * (data->tex.no.bits_per_pixel >> 3)
+				+ (int)((y - ray->drawStart * 1.0)
+					/ ray->lineHeight * T_HEIGHT) *data->tex.no.line_length];
+			color = rgb_to_hex(r, g, b);
+			// // make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 			if (ray->side == 1)
 				color = (color >> 1) & 8355711;
+
 			my_mlx_pixel_put(&bite, x, y, color);
 		}
 		// FLOOR

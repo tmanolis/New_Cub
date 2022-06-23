@@ -73,6 +73,7 @@ int		retrieve_info_in_file(t_data *data, char **map);
 // 01_PARSING - 02_parse_map_description.c
 int		retrieve_map_description(t_data *data, char **map, int i);
 // 01_PARSING - 03_check_info_retrieved.c
+unsigned long	convert_rgb_to_hex(int *rgb_array);
 int		check_info_retrieved(t_graphics *graphics);
 // 01_PARSING - 04_check_map_retrieved.c
 int		check_map_retrieved(t_map *map, char **map_array);

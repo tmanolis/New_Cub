@@ -44,17 +44,17 @@ static void	free_map(t_map *map)
 }
 
 
-static void	free_textures(t_tex tex)
-{
-	if (tex.no)
-		free(tex.no);
-	if (tex.so)
-		free(tex.so);
-	if (tex.ea)
-		free(tex.ea);
-	if (tex.we)
-		free(tex.we);
-}
+// static void	free_textures(t_tex tex)
+// {
+// 	if (tex.no)
+// 		free(tex.no);
+// 	if (tex.so)
+// 		free(tex.so);
+// 	if (tex.ea)
+// 		free(tex.ea);
+// 	if (tex.we)
+// 		free(tex.we);
+// }
 
 int	free_for_your_life(t_data *data)
 {
@@ -62,6 +62,6 @@ int	free_for_your_life(t_data *data)
 	free_map(&data->map);
 	if (data->mlx)
 		free(data->mlx);
-	free_textures(data->tex);
+	// free_textures(data->tex);
 	return (FAILURE);
 }
