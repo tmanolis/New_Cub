@@ -17,31 +17,6 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
-
-void	verLine(t_img *img, int x, int y1, int y2, int color)
-{
-	int	y = 0;
-	int sky = 0xFFFF00;
-	int floor = BLACK; 
-
-	while (y < y1) {
-		my_mlx_pixel_put(img, x, y, sky);
-		y++;
-	}
-	y = y1;
-
-	while (y <= y2)
-	{
-		my_mlx_pixel_put(img, x, y, color);
-//		mlx_pixel_put(data->mlx, data->win, x, y, color);
-		y++;
-	}
-	while (y < W_HEIGHT) {
-		my_mlx_pixel_put(img, x, y, floor);
-		y++;
-	}
-}
-
 void	calc(t_data *data)
 {
 	t_map		*map;
@@ -124,11 +99,6 @@ void	calc(t_data *data)
 			
 			if (worldMap[ray->mapX][ray->mapY] == 1) 
 				ray->hit = 1;
-			// else if (worldMap[mapX][mapY] == 2)
-			// {
-			// 	printf("boucle hit : %d\n", worldMap[mapX][mapY]);
-			// 	hit = 1;
-			// }
 		}
 		if (ray->side == 0)
 			ray->perpWallDist = (ray->mapX - map->pos_x + (1 - ray->stepX) / 2) / ray->rayDirX;
@@ -146,25 +116,6 @@ void	calc(t_data *data)
 		if(ray->drawEnd >= data->win_height)
 			ray->drawEnd = data->win_height - 1;
 
-		// // int	color;
-		// // printf("je tombe sur cette valeur : %c\n", worldMap[mapX][mapY]);
-		// if (worldMap[ray->mapX][ray->mapY] == 1)
-		// 	ray->color = PINK; // rouge
-		// // else if (map->map[mapX][mapY] == '2')
-		// // 	color = 0x00FF00;  // vert
-		// // else if (map->map[mapX][mapY] == 3)
-		// // 	color = 0x0000FF; // bleu
-		// // else if (map->map[mapX][mapY] == 4)
-		// // 	color = 0xFFFFFF; // white
-		// // else if (map->map[mapX][mapY] == 5)
-		// // 	color = 0xFFFF00; // jaune
-		// else
-		// 	ray->color = PURPLE;
-		// if (ray->side == 1)
-		// 	ray->color = ray->color / 2;
-
-		// verLine(&bite, x, ray->drawStart, ray->drawEnd, ray->color);
-		
 		double wallX;
 		if (ray->side == 0)
 			wallX = map->pos_y + ray->perpWallDist * ray->rayDirY;
@@ -191,14 +142,8 @@ void	calc(t_data *data)
 			y++;
 		}
 		// Starting texture coordinate
-		// TODO: le calcul de texPos diff du code de Satcheen a checker
-		// double texPos = (ray->drawStart - W_HEIGHT / 2 + ray->lineHeight / 2) * step;
 		for (int y = ray->drawStart; y < ray->drawEnd; y++)
 		{
-			// Cast the texture coordinate to integer, and mask with (T_HEIGHT - 1) in case of overflow
-			// int texY = (int)texPos & (T_HEIGHT - 1);
-			// texPos += step;
-			// int color = data->tex.no.addr[T_WIDTH * texY + texX];
 			int color;
 			int	r;
 			int	g;
@@ -213,7 +158,7 @@ void	calc(t_data *data)
 				+ (int)((y - ray->drawStart * 1.0)
 					/ ray->lineHeight * T_HEIGHT) *data->tex.no.line_length];
 			color = rgb_to_hex(r, g, b);
-			// // make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+			// make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 			if (ray->side == 1)
 				color = (color >> 1) & 8355711;
 
