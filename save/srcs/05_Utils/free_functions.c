@@ -44,17 +44,17 @@ static void	free_map(t_map *map)
 }
 
 
-static void	free_textures(t_data *data, t_tex tex)
-{
-	if (tex.no.mlx_img)
-		mlx_destroy_image(data->mlx, tex.no.mlx_img);
-	if (tex.so.mlx_img)
-		mlx_destroy_image(data->mlx, tex.so.mlx_img);
-	if (tex.ea.mlx_img)
-		mlx_destroy_image(data->mlx, tex.ea.mlx_img);
-	if (tex.we.mlx_img)
-		mlx_destroy_image(data->mlx, tex.we.mlx_img);
-}
+// static void	free_textures(t_data *data, t_tex tex)
+// {
+// 	if (tex.no.mlx_img)
+// 		mlx_destroy_image(data->mlx, tex.no.mlx_img);
+// 	if (tex.so.mlx_img)
+// 		mlx_destroy_image(data->mlx, tex.so.mlx_img);
+// 	if (tex.ea.mlx_img)
+// 		mlx_destroy_image(data->mlx, tex.ea.mlx_img);
+// 	if (tex.we.mlx_img)
+// 		mlx_destroy_image(data->mlx, tex.we.mlx_img);
+// }
 
 int	free_for_your_life(t_data *data)
 {
@@ -62,6 +62,6 @@ int	free_for_your_life(t_data *data)
 	free_map(&data->map);
 	if (data->mlx)
 		free(data->mlx);
-	free_textures(data, data->tex);
+	// free_textures(data, data->tex);
 	return (FAILURE);
 }
