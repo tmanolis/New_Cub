@@ -61,6 +61,13 @@ enum e_output
 	CONTINUE = 4
 };
 
+enum e_cardinals
+{ 
+	NO,
+	SO,
+	WE,
+	EA
+};
 
 extern int	worldMap[24][24];
 // 00_ERR_HANDLING - 00_check_arg.c

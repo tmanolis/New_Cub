@@ -71,6 +71,7 @@ typedef struct	s_raycast
 	int		hit;
 	int		side;		// facing NO/SO or EA/WE
 	int		lineHeight;
+	double	wallX;
 	int		drawStart;
 	int		drawEnd;
 	int		color;
