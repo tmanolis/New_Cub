@@ -84,13 +84,15 @@ void	which_distance_if_wall_hit(t_raycast *ray)
 		{
 			ray->sideDistX += ray->deltaDistX;
 			ray->mapX += ray->stepX;
-			ray->side = 0;
+			// ray->side = 0;
+			ray->side = (ray->rayDirX > 0) ? EA : WE;
 		}
 		else
 		{
 			ray->sideDistY += ray->deltaDistY;
 			ray->mapY += ray->stepY;
-			ray->side = 1;
+			// ray->side = 1;
+			ray->side = (ray->rayDirY > 0) ? SO : NO;
 		}
 		//Check if ray has hit a wall
 		
@@ -101,7 +103,7 @@ void	which_distance_if_wall_hit(t_raycast *ray)
 
 void	calculate_wall_specs(t_data *data, t_raycast *ray, t_map *map)
 {
-	if (ray->side == 0)
+	if (ray->side == EA || ray->side == WE)  // ray->side == 0
 		ray->perpWallDist = (ray->mapX - map->pos_x + (1 - ray->stepX) / 2) / ray->rayDirX;
 	else
 		ray->perpWallDist = (ray->mapY - map->pos_y + (1 - ray->stepY) / 2) / ray->rayDirY;
@@ -118,7 +120,7 @@ void	calculate_wall_specs(t_data *data, t_raycast *ray, t_map *map)
 		ray->drawEnd = data->win_height - 1;
 
 	// double wallX;
-	if (ray->side == 0)
+	if (ray->side == EA || ray->side == WE) // ray->side == 0
 		ray->wallX = map->pos_y + ray->perpWallDist * ray->rayDirY;
 	else
 		ray->wallX = map->pos_x + ray->perpWallDist * ray->rayDirX;
@@ -153,7 +155,7 @@ void	display_background(unsigned long color, t_img *img, int start, int end, int
  * @brief Set the wall textures according to the direction filled (N, S, W, E)
  * 
  */
-// void	set_wall_direction()
+// char	*set_wall_direction()
 // {
 // 	if 
 // }
@@ -170,10 +172,11 @@ int	get_rgb(char *tex_addr, t_raycast *ray, t_data *data, int add, int y)
 
 void	display_wall_textures(t_data *data, t_raycast *ray, t_img *img, int x)
 {
-	int color;
-	int	r;
-	int	g;
-	int	b;
+	int		color;
+	int		r;
+	int		g;
+	int		b;
+	char	*tex_addr;
 	
 	for (int y = ray->drawStart; y < ray->drawEnd; y++)
 	{
@@ -186,12 +189,17 @@ void	display_wall_textures(t_data *data, t_raycast *ray, t_img *img, int x)
 		// b = data->tex.no.addr[(int)(ray->wallX * T_WIDTH) * (data->tex.no.bits_per_pixel >> 3)
 		// 	+ 0 + (int)((y - ray->drawStart * 1.0)
 		// 		/ ray->lineHeight * T_HEIGHT) *data->tex.no.line_length];
+
+		// tex_addr = set_wall_direction();
 		r = get_rgb(data->tex.no.addr, ray, data, 2, y);
 		g = get_rgb(data->tex.no.addr, ray, data, 1, y);
 		b = get_rgb(data->tex.no.addr, ray, data, 0, y);
+		// r = get_rgb(tex_addr, ray, data, 2, y);
+		// g = get_rgb(tex_addr, ray, data, 1, y);
+		// b = get_rgb(tex_addr, ray, data, 0, y);
 		color = rgb_to_hex(r, g, b);
 		// make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
-		if (ray->side == 1)
+		if (ray->side == SO || ray->side ==  NO)
 			color = (color >> 1) & 8355711;
 		my_mlx_pixel_put(img, x, y, color);
 	}
