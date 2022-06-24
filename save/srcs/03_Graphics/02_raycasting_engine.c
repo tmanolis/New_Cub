@@ -54,25 +54,25 @@ void	init_raycasting_variables(t_data *data, t_raycast *ray, t_map *map, int x)
 void	calculate_raydirx_and_stepx(t_raycast *ray, t_map *map)
 {
 	if (ray->rayDirX < 0)
-		{
-			ray->stepX = -1;
-			ray->sideDistX = (map->pos_x - ray->mapX) * ray->deltaDistX;
-		}
-		else
-		{
-			ray->stepX = 1;
-			ray->sideDistX = (ray->mapX + 1.0 - map->pos_x) * ray->deltaDistX;
-		}
-		if (ray->rayDirY < 0)
-		{
-			ray->stepY = -1;
-			ray->sideDistY = (map->pos_y - ray->mapY) * ray->deltaDistY;
-		}
-		else
-		{
-			ray->stepY = 1;
-			ray->sideDistY = (ray->mapY + 1.0 - map->pos_y) * ray->deltaDistY;
-		}
+	{
+		ray->stepX = -1;
+		ray->sideDistX = (map->pos_x - ray->mapX) * ray->deltaDistX;
+	}
+	else
+	{
+		ray->stepX = 1;
+		ray->sideDistX = (ray->mapX + 1.0 - map->pos_x) * ray->deltaDistX;
+	}
+	if (ray->rayDirY < 0)
+	{
+		ray->stepY = -1;
+		ray->sideDistY = (map->pos_y - ray->mapY) * ray->deltaDistY;
+	}
+	else
+	{
+		ray->stepY = 1;
+		ray->sideDistY = (ray->mapY + 1.0 - map->pos_y) * ray->deltaDistY;
+	}
 }
 
 void	which_distance_if_wall_hit(t_raycast *ray)
@@ -155,10 +155,17 @@ void	display_background(unsigned long color, t_img *img, int start, int end, int
  * @brief Set the wall textures according to the direction filled (N, S, W, E)
  * 
  */
-// char	*set_wall_direction()
-// {
-// 	if 
-// }
+char	*set_wall_direction(t_data *data, t_raycast *ray)
+{
+	if (ray->side == NO)
+		return (data->tex.no.addr);
+	else if (ray->side == SO)
+		return (data->tex.so.addr);
+	else if (ray->side == EA)
+		return (data->tex.ea.addr);
+	else // if (ray->side == WE)
+		return (data->tex.we.addr);
+}
 
 int	get_rgb(char *tex_addr, t_raycast *ray, t_data *data, int add, int y)
 {
@@ -177,7 +184,8 @@ void	display_wall_textures(t_data *data, t_raycast *ray, t_img *img, int x)
 	int		g;
 	int		b;
 	char	*tex_addr;
-	
+
+	tex_addr = set_wall_direction(data, ray);
 	for (int y = ray->drawStart; y < ray->drawEnd; y++)
 	{
 		// r = data->tex.no.addr[(int)(ray->wallX * T_WIDTH) * (data->tex.no.bits_per_pixel >> 3)
@@ -190,13 +198,13 @@ void	display_wall_textures(t_data *data, t_raycast *ray, t_img *img, int x)
 		// 	+ 0 + (int)((y - ray->drawStart * 1.0)
 		// 		/ ray->lineHeight * T_HEIGHT) *data->tex.no.line_length];
 
-		// tex_addr = set_wall_direction();
-		r = get_rgb(data->tex.no.addr, ray, data, 2, y);
-		g = get_rgb(data->tex.no.addr, ray, data, 1, y);
-		b = get_rgb(data->tex.no.addr, ray, data, 0, y);
-		// r = get_rgb(tex_addr, ray, data, 2, y);
-		// g = get_rgb(tex_addr, ray, data, 1, y);
-		// b = get_rgb(tex_addr, ray, data, 0, y);
+		
+		// r = get_rgb(data->tex.no.addr, ray, data, 2, y);
+		// g = get_rgb(data->tex.no.addr, ray, data, 1, y);
+		// b = get_rgb(data->tex.no.addr, ray, data, 0, y);
+		r = get_rgb(tex_addr, ray, data, 2, y);
+		g = get_rgb(tex_addr, ray, data, 1, y);
+		b = get_rgb(tex_addr, ray, data, 0, y);
 		color = rgb_to_hex(r, g, b);
 		// make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 		if (ray->side == SO || ray->side ==  NO)
