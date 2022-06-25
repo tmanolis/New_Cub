@@ -7,10 +7,8 @@ static int	check_letters(t_map *map, char **map_array)
 
 	i = 0;
 	map->p_direction = '0';
-	printf("ceci est map_arr : %s\n", map_array[i]);
 	while (map_array[i] != NULL)
 	{
-		printf("nb : %d | map_arr : %s\n", i, map_array[i]);
 		j = 0;
 		while (map_array[i][j])
 		{
@@ -104,9 +102,9 @@ int	check_map_retrieved(t_map *map, char **map_array)
 	if (check_map_sides(map, map_array) == FAILURE)
 		return (print_error("The map must be surrounded by walls"));
 	if (check_left_side_is_closed(map_array) == FAILURE)
-		return (print_error("The map is not fully closed"));
+		return (print_error("The map is not fully closed on the left side"));
 	if (check_right_side_is_closed(map_array) == FAILURE)
-		return (print_error("RIGHT The map is not fully closed"));
+		return (print_error("The map is not fully closed on the right side"));
 	if (check_player_position(map, map_array) == FAILURE)
 		return (FAILURE);
 	if (check_map_is_at_the_end(map) == FAILURE)

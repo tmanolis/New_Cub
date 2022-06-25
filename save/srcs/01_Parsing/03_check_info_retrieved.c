@@ -40,7 +40,7 @@ static int	check_existence_of_path(char *path)
 	return (SUCCESS);
 }
 
-unsigned long	convert_rgb_to_hex(int *rgb_array) // fc03ba // ce qu'on veut : fcba03
+unsigned long	convert_rgb_to_hex(int *rgb_array)
 {
 	unsigned long	result;
 	int				r;

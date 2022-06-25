@@ -97,8 +97,9 @@ int		check_left_side_is_closed(char **map_array);
 int		check_right_side_is_closed(char **map_array);
 
 // 02_EVENTS_HANDLING - 00_handlers.c
-int		raycasting_loop(t_data *data);
-int		key_press(int keysym, t_data *data);
+int		cross_btn_handler(t_data *data);
+int		key_press_handler(int keysym, t_data *data);
+int		raycasting_handler(t_data *data);
 // 02_EVENTS_HANDLING - 01_hooks.c
 void	mlx_loop_and_hooks(t_data data);
 // 02_EVENTS_HANDLING - 02_player_moves.c
@@ -134,7 +135,6 @@ void	move_player(t_data *data, int keysym);
 // 04_MINIMAP - 02_utils.c
 void	draw_line(void *mlx, void *window, int beginX, int beginY, int endX, int endY, int color);
 // 04_MINIMAP - 03_handlers.c
-int		handle_crossbtn(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 int		render(t_data *data);
 

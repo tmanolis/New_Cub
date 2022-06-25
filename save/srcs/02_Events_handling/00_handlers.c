@@ -1,6 +1,16 @@
 #include "cub3d.h"
 
-int	key_press(int keysym, t_data *data)
+int	cross_btn_handler(t_data *data)
+{
+	mlx_destroy_window(data->mlx, data->win);
+	data->win = NULL;
+	mlx_destroy_display(data->mlx);
+	free_for_your_life(data);
+	exit(0);
+	return (0);
+}
+
+int	key_press_handler(int keysym, t_data *data)
 {
 	if (keysym == 'w')
 		move_forward(data);
@@ -26,7 +36,7 @@ int	key_press(int keysym, t_data *data)
 	return (SUCCESS);
 }
 
-int	raycasting_loop(t_data *data)
+int	raycasting_handler(t_data *data)
 {
 	t_img		tmp_img;
 
