@@ -46,9 +46,7 @@ int	main(int argc, char **argv)
 		printf("x : %f | y : %f\n", data.map.pos_x, data.map.pos_y);
 		init_window(&data);
 		init_textures(&data);
-		
 		mlx_loop_and_hooks(data);
-		// mlx_destroy_display(data.mlx);
 		free_for_your_life(&data);
 	}
 	else

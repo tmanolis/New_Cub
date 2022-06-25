@@ -10,8 +10,6 @@
 	whole background to be drawn = ugly flickering on the screen"
 */
 
-
-
 // dessine les cubes collés les un aux autres
 void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int color)
 {
@@ -32,7 +30,7 @@ void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int c
 }
 
 // avec les i et j set à 1, on a un petit espace esthetique entre chaque cube
-void	draw_a_cell2(t_data *data, int beginX, int beginY, int lenX, int lenY, int color)
+static void	draw_a_cell2(t_data *data, int beginX, int beginY, int lenX, int lenY, int color)
 {
 	int	i;
 	int	j;
@@ -51,7 +49,7 @@ void	draw_a_cell2(t_data *data, int beginX, int beginY, int lenX, int lenY, int 
 }
 
 
-void	draw_player_pos(t_data *data)
+static void	draw_player_pos(t_data *data)
 {
 	draw_a_cell(data, data->map.p_x * CELL_SIZE, data->map.p_y * CELL_SIZE, CELL_SIZE, CELL_SIZE, PINK);
 }
@@ -90,4 +88,3 @@ void	draw_the_2d_map(t_data *data)
 	}
 	draw_player_pos(data);
 }
-

@@ -69,6 +69,12 @@ enum e_cardinals
 	EA
 };
 
+enum e_map
+{ 
+	TILE = 0,
+	WALL
+};
+
 extern int	worldMap[24][24];
 // 00_ERR_HANDLING - 00_check_arg.c
 int		check_arg(char *arg);
@@ -91,29 +97,51 @@ int		check_left_side_is_closed(char **map_array);
 int		check_right_side_is_closed(char **map_array);
 
 // 02_EVENTS_HANDLING - 00_handlers.c
-int		handle_crossbtn(t_data *data);
-int		handle_keypress(int keysym, t_data *data);
+int		raycasting_loop(t_data *data);
 int		key_press(int keysym, t_data *data);
 // 02_EVENTS_HANDLING - 01_hooks.c
 void	mlx_loop_and_hooks(t_data data);
 // 02_EVENTS_HANDLING - 02_player_moves.c
-void	move_player(t_data *data, int keysym);
+void	move_forward(t_data *data);
+void	move_backward(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+void	rotate_sight(t_data *data, double ro_speed);
 
 // 03_GRAPHICS - 00_init_window.c
 int		init_window(t_data *data);
-void	draw_line(void *mlx, void *window, int beginX, int beginY, int endX, int endY, int color);
-int		render(t_data *data);
-void	draw_the_2d_map(t_data *data);
+void	init_img_to_display(t_data *data, t_img *img);
+// 03_GRAPHICS - 01_raycasting_init.c
+void	init_raycasting_variables(t_data *data, t_raycast *ray, t_map *map, int x);
+void	calculate_raydirx_and_stepx(t_raycast *ray, t_map *map);
+void	which_distance_if_wall_hit(t_raycast *ray);
+void	calculate_wall_specs(t_data *data, t_raycast *ray, t_map *map);
 // 03_GRAPHICS - 02_raycasting_engine.c
-int		raycasting_loop(t_data *data);
+void	calculate_and_display(t_data *data, t_img *img);
+// 03_GRAPHICS - 03_raycasting_utils.c
+int		rgb_to_hex(int r, int g, int b);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	display_background(unsigned long color, t_img *img, int start, int end, int x);
 // 03_GRAPHICS - 04_init_textures.c
 void	init_textures(t_data *data);
-// 03_GRAPHICS - 04_2d_map.c
+
+// 04_MINIMAP - 00_display.c
 void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int color);
+void	draw_the_2d_map(t_data *data);
+
+// 04_MINIMAP - 01_moves.c
+void	move_player(t_data *data, int keysym);
+// 04_MINIMAP - 02_utils.c
+void	draw_line(void *mlx, void *window, int beginX, int beginY, int endX, int endY, int color);
+// 04_MINIMAP - 03_handlers.c
+int		handle_crossbtn(t_data *data);
+int		handle_keypress(int keysym, t_data *data);
+int		render(t_data *data);
 
 // 05_UTILS - free_functions.c
 void	free_double_array(char **tab);
 int		free_for_your_life(t_data *data);
+void	free_textures(t_data *data, t_tex tex);
 // 05_UTILS - init_data.c
 void	init_data(t_data *data);
 void	init_raycasting(t_map *map);
