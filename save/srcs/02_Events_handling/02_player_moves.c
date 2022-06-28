@@ -8,7 +8,6 @@ void	move_forward(t_data *data)
 	int	y2;
 	int	x2;
 
-	printf("Wall is %c\n", WALL);
 	y1 = (int)(data->map.pos_x + data->map.dir_x * data->map.move_speed);
 	x1 = (int)data->map.pos_y;
 	y2 = (int)(data->map.pos_x);

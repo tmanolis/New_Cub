@@ -16,6 +16,7 @@ void	init_map(t_map *map)
 	map->path = NULL;
 	map->file = NULL;
 	map->map = NULL;
+	// map->map_int = NULL;
 }
 
 void	init_data(t_data *data)

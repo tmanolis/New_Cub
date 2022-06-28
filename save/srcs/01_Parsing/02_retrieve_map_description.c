@@ -42,6 +42,7 @@ int	fill_map_array(t_map *map, char **map_array, int index)
 int	get_map_info(t_data *data, char **file, int i)
 {
 	data->map.nb_line = count_map_lines(data, file, i);
+	printf("nb line : %d\n", data->map.nb_line);
 	data->map.map = (char **)malloc(sizeof(char *) * (data->map.nb_line + 1));
 	if (!data->map.map)
 		return (FAILURE);

@@ -7,13 +7,13 @@
 static char	*set_wall_direction(t_data *data, t_raycast *ray)
 {
 	if (ray->side == NO)
-		return (data->tex.no.addr);
-	else if (ray->side == SO)
-		return (data->tex.so.addr);
-	else if (ray->side == EA)
-		return (data->tex.ea.addr);
-	else
 		return (data->tex.we.addr);
+	else if (ray->side == SO)
+		return (data->tex.ea.addr);
+	else if (ray->side == EA)
+		return (data->tex.so.addr);
+	else
+		return (data->tex.no.addr);
 }
 
 /**
@@ -51,7 +51,7 @@ static void	display_wall_textures(t_data *data, t_raycast *ray, t_img *img, int 
 		g = get_rgb(tex_addr, ray, data, 1, y);
 		b = get_rgb(tex_addr, ray, data, 0, y);
 		color = rgb_to_hex(r, g, b);
-		if (ray->side == SO || ray->side ==  NO)
+		if (ray->side == EA || ray->side == WE)
 			color = (color >> 1) & 8355711;
 		my_mlx_pixel_put(img, x, y, color);
 	}

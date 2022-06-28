@@ -39,11 +39,6 @@ void	calculate_raydirx_and_stepx(t_raycast *ray, t_map *map)
 // LE PB : ca segfault quand on arrive a la lettre du joueur
 void	which_distance_if_wall_hit(t_raycast *ray, t_map *map)
 {
-	for (int i = 0; map->map[i]; i++)
-		printf("%s\n", map->map[i]);
-	printf("mapX : %d, mapY: %d\n", ray->mapX, ray->mapY);
-	printf("value: %c\n", map->map[3][2]);
-	printf("value: %c\n", map->map[ray->mapX][ray->mapY]);
 	while (ray->hit == 0)
 	{
 		if (ray->sideDistX < ray->sideDistY)
@@ -58,7 +53,7 @@ void	which_distance_if_wall_hit(t_raycast *ray, t_map *map)
 			ray->mapY += ray->stepY;
 			ray->side = (ray->rayDirY > 0) ? SO : NO;
 		}
-		if (map->map[ray->mapX][ray->mapY] == '1') 
+		if (map->map[ray->mapX][ray->mapY] == '1')
 			ray->hit = 1;
 	}
 }

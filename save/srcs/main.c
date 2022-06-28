@@ -27,27 +27,28 @@
 // 							{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 // 						};
 
-void	convert_map_type(t_data *data, char **map_char)
-{
-	int	i;
-	int	j;
+// void	convert_map_type(t_data *data, char **map_char)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	data->map.map_int = (int **)malloc(sizeof(int *) * data->map.nb_line);
-	while (map_char[i])
-	{
-		j = 0;
-		while (map_char[i][j])
-		{
-			data->map.map_int[i] = malloc(sizeof(int) * ft_strlen(map_char[i]));
-			data->map.map_int[i][j] = map_char[i][j] == '0' ? 0 : 1;
-			// data->map.map_int[i][j] = ft_atoi(map_char[i][j]);
-			printf("Voici l'elt copie : %d\n", data->map.map_int[i][j]);
-			j++;
-		}
-		i++;
-	}
-}
+// 	i = 0;
+// 	data->map.map_int = (int **)malloc(sizeof(int *) * data->map.nb_line);
+// 	while (map_char[i])
+// 	{
+// 		j = 0;
+// 		while (map_char[i][j])
+// 		{
+// 			data->map.map_int[i] = malloc(sizeof(int) * ft_strlen(map_char[i]));
+// 			data->map.map_int[i][j] = map_char[i][j] == '0' ? 0 : 1;
+// 			// data->map.map_int[i][j] = ft_atoi(map_char[i][j]);
+// 			printf("%d ", data->map.map_int[i][j]);
+// 			j++;
+// 		}
+// 		printf("\n");
+// 		i++;
+// 	}
+// }
 
 int	main(int argc, char **argv)
 {
@@ -64,9 +65,9 @@ int	main(int argc, char **argv)
 		if (check_info_retrieved(&data.graphics) == FAILURE)
 			return (print_error(MSG_INVALID_INFO) && free_for_your_life(&data));
 		check_map_retrieved(&data.map, data.map.map);
-		// for (int i = 0; data.map.map[i]; i++)
-		// 	printf("%s\n", data.map.map[i]);
-		convert_map_type(&data, data.map.map);
+		for (int i = 0; data.map.map[i]; i++)
+			printf("%s\n", data.map.map[i]);
+		// convert_map_type(&data, data.map.map);
 		init_raycasting(&data.map);
 		printf("x : %f | y : %f\n", data.map.pos_x, data.map.pos_y);
 		init_window(&data);
