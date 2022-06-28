@@ -71,8 +71,8 @@ enum e_cardinals
 
 enum e_map
 { 
-	TILE = 0,
-	WALL
+	TILE = '0',
+	WALL = '1'
 };
 
 extern int	worldMap[24][24];
@@ -115,7 +115,7 @@ void	init_img_to_display(t_data *data, t_img *img);
 // 03_GRAPHICS - 01_raycasting_init.c
 void	init_raycasting_variables(t_data *data, t_raycast *ray, t_map *map, int x);
 void	calculate_raydirx_and_stepx(t_raycast *ray, t_map *map);
-void	which_distance_if_wall_hit(t_raycast *ray);
+void	which_distance_if_wall_hit(t_raycast *ray, t_map *map);
 void	calculate_wall_specs(t_data *data, t_raycast *ray, t_map *map);
 // 03_GRAPHICS - 02_raycasting_engine.c
 void	calculate_and_display(t_data *data, t_img *img);

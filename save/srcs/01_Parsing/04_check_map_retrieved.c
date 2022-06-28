@@ -62,6 +62,7 @@ static int	check_player_position(t_map *map, char **map_array)
 			{
 				map->p_x = j;
 				map->p_y = i;
+				map_array[i][j] = '0';
 			}
 			j++;
 		}

@@ -27,10 +27,10 @@ void	set_player_direction(t_map *map, char dir)
 
 void	init_raycasting(t_map *map)
 {
-	// map->pos_x = (double)map->p_x + 0.5;
-	// map->pos_y = (double)map->p_y + 0.5;
-	map->pos_x = 2;
-	map->pos_y = 2;
+	map->pos_x = (double)map->p_x + 0.5;
+	map->pos_y = (double)map->p_y + 0.5;
+	// map->pos_x = 2;
+	// map->pos_y = 2;
 	map->dir_x = -1;
 	map->dir_y = 0;
 	map->plane_x = 0;

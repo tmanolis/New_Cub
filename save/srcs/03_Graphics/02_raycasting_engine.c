@@ -83,7 +83,7 @@ void	calculate_and_display(t_data *data, t_img *img)
 	{
 		init_raycasting_variables(data, ray, map, x);
 		calculate_raydirx_and_stepx(ray, map);
-		which_distance_if_wall_hit(ray);
+		which_distance_if_wall_hit(ray, map);
 		calculate_wall_specs(data, ray, map);
 		display_background(ceiling, img, 0, ray->drawStart, x);
 		display_wall_textures(data, ray, img, x);
