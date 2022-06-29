@@ -53,7 +53,7 @@ void	which_distance_if_wall_hit(t_raycast *ray, t_map *map)
 			ray->mapY += ray->stepY;
 			ray->side = (ray->rayDirY > 0) ? SO : NO;
 		}
-		if (map->map[ray->mapX][ray->mapY] == '1')
+		if (map->map_marc[ray->mapY][ray->mapX] == '1')
 			ray->hit = 1;
 	}
 }

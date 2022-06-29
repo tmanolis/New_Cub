@@ -40,7 +40,7 @@ typedef struct s_map
 	char		**file;
 	int			nb_line;
 	char		**map;
-	int			**map_int;
+	char		**map_marc;
 	int			index_end_of_map;
 	char		p_direction;
 	int			p_x;
