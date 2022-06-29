@@ -12,9 +12,9 @@ void	move_forward(t_data *data)
 	x1 = (int)data->map.pos_y;
 	y2 = (int)(data->map.pos_x);
 	x2 = (int)(data->map.pos_y + data->map.dir_y * data->map.move_speed);
-	if (data->map.map_marc[y1][x1] != WALL)
+	if (data->map.map_marc[x1][y1] != WALL)
 		data->map.pos_x += data->map.dir_x * data->map.move_speed;
-	if (data->map.map_marc[y2][x2] != WALL)
+	if (data->map.map_marc[x2][y2] != WALL)
 		data->map.pos_y += data->map.dir_y * data->map.move_speed;
 }
 
@@ -27,12 +27,12 @@ void	move_backward(t_data *data)
 	// UPDATE VALUE OF POS_X
 	y = (int)(data->map.pos_x - data->map.dir_x * data->map.move_speed);
 	x = (int)data->map.pos_y;
-	if (data->map.map_marc[y][x] != WALL)
+	if (data->map.map_marc[x][y] != WALL)
 		data->map.pos_x -= data->map.dir_x * data->map.move_speed;
 	// UPDATE VALUE OF POS_Y
 	y = (int)(data->map.pos_x);
 	x = (int)(data->map.pos_y + data->map.dir_y * data->map.move_speed);
-	if (data->map.map_marc[y][x] != WALL)
+	if (data->map.map_marc[x][y] != WALL)
 		data->map.pos_y -= data->map.dir_y * data->map.move_speed;
 }
 
@@ -48,9 +48,9 @@ void	move_left(t_data *data)
 	x1 = (int)(data->map.pos_y);
 	y2 = (int)(data->map.pos_x);
 	x2 = (int)(data->map.pos_y + data->map.dir_y * data->map.move_speed);
-	if (data->map.map_marc[y1][x1] != WALL)
+	if (data->map.map_marc[x1][y1] != WALL)
 		data->map.pos_x -= data->map.dir_y * data->map.move_speed;
-	if (data->map.map_marc[y2][x2] != WALL)
+	if (data->map.map_marc[x2][y2] != WALL)
 		data->map.pos_y += data->map.dir_x * data->map.move_speed;
 }
 
@@ -66,9 +66,9 @@ void	move_right(t_data *data)
 	x1 = (int)(data->map.pos_y);
 	y2 = (int)(data->map.pos_x);
 	x2 = (int)(data->map.pos_y - data->map.dir_y * data->map.move_speed);
-	if (data->map.map_marc[y1][x1] != WALL)
+	if (data->map.map_marc[x1][y1] != WALL)
 			data->map.pos_x += data->map.dir_y * data->map.move_speed;
-	if (data->map.map_marc[y2][x2] != WALL)
+	if (data->map.map_marc[x2][y2] != WALL)
 		data->map.pos_y -= data->map.dir_x * data->map.move_speed;
 }
 
