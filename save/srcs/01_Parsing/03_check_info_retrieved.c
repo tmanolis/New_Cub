@@ -27,8 +27,19 @@ static int	check_input_of_rgb(int *rgb)
 static int	check_existence_of_path(char *path)
 {
 	int	fd;
+	int	len;
 
 	fd = open(path, O_RDWR);
+	
+	len = ft_strlen(path);
+	// printf("fin path: |%c| |%c| |%c| |%c|\n", path[len - 4], path[len - 3], path[len - 2], path[len - 1]);
+	if ((path[len - 4] != '.' || path[len - 3] != 'x' || path[len - 2] != 'p'
+		|| path[len - 1] != 'm'))
+	{
+		printf("PUTAIN DE MERDE path: |%s|\n", path);
+		close(fd);
+		return (FAILURE);
+	}
 	if (fd == -1)
 	{
 		close(fd);
@@ -37,6 +48,7 @@ static int	check_existence_of_path(char *path)
 		ft_putchar_fd('\n', 2);
 		return (FAILURE);
 	}
+	
 	return (SUCCESS);
 }
 

@@ -1,13 +1,13 @@
-   WE                            subject.pdf 
-NO      subject.pdf
+   WE                            assets/grey_stone.xpm 
+NO      assets/purple_stone.xpm
 
 
 
-SO subject.pdf
+SO assets/wall_brick.xpm
 
 F      28  ,    100,    10
 
-EA subject.pdf
+EA assets/wood.xpm
 
 
 

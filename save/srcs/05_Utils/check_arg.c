@@ -23,9 +23,9 @@ int	check_arg(char *arg)
 	{
 		fd = open(arg, O_RDONLY);
 		close(fd);
-		if ((arg[len - 3] != 'c' && arg[len - 2] != 'u'
-				&& arg[len - 1] != 'b'
-				&& arg[len - 4] != '.') || fd < 0)
+		if ((arg[len - 3] != 'c' || arg[len - 2] != 'u'
+				|| arg[len - 1] != 'b'
+				|| arg[len - 4] != '.') || fd < 0)
 			return (FAILURE);
 		else
 			return (SUCCESS);

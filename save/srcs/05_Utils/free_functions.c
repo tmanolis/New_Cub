@@ -60,8 +60,7 @@ int	free_for_your_life(t_data *data)
 {
 	free_graphics(&data->graphics);
 	free_map(&data->map);
-	if (data->mlx)
-		free(data->mlx);
-	// free_textures(data, data->tex);
+	// if (data->mlx)
+	// 	free(data->mlx);
 	return (FAILURE);
 }
