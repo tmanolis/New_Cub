@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:05:41 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/06/30 19:34:58 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:47:55 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@
 // MLX
 # define W_HEIGHT 512
 # define W_WIDTH 1024
-# define T_HEIGHT 64 //64 // tjrs à la ligne 4 du .xpm
-# define T_WIDTH 64 //64
+# define T_HEIGHT 64
+# define T_WIDTH 64
 # define CELL_SIZE 8
 
 // COLORS
