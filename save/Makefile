@@ -36,7 +36,8 @@ MLX_PATH = ${MLX_DIR}/libmlx.a
 #########################################
 SRCS = main.c 									\
 	01_Parsing/00_open_file.c 					\
-	01_Parsing/01_retrieve_info_in_file.c 		\
+	01_Parsing/01_00_retrieve_path_textures.c 	\
+	01_Parsing/01_01_retrieve_floor_ceiling.c 	\
 	01_Parsing/02_retrieve_map_description.c 	\
 	01_Parsing/03_check_info_retrieved.c 		\
 	01_Parsing/04_check_map_retrieved.c 		\

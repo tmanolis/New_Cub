@@ -1,8 +1,16 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   03_check_info_retrieved.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 13:19:32 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/06/30 13:22:17 by msanjuan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// QUAND TOUT EST REMPLI DANS LA STRUCT, ON DOIT CHECKER QUE LES INFOS NE SONT PAS
-// ABERRANTES (ex le path qui doit exister, les valeurs du RGB qui doivent aller 
-// de 0 à 256)
+#include "cub3d.h"
 
 static int	check_input_of_rgb(int *rgb)
 {
@@ -16,7 +24,7 @@ static int	check_input_of_rgb(int *rgb)
 			ft_putstr_fd("The following number is invalid : ", 2);
 			ft_putnbr_fd(rgb[i], 2);
 			ft_putchar_fd('\n', 2);
-			ft_putstr_fd("RGB has a min value of 0 and a max value of 255.\n", 2);
+			ft_putstr_fd("RGB has a min val of 0 and a max value of 255.\n", 2);
 			return (FAILURE);
 		}
 		i++;
@@ -30,11 +38,9 @@ static int	check_existence_of_path(char *path)
 	int	len;
 
 	fd = open(path, O_RDWR);
-	
 	len = ft_strlen(path);
-	// printf("fin path: |%c| |%c| |%c| |%c|\n", path[len - 4], path[len - 3], path[len - 2], path[len - 1]);
 	if ((path[len - 4] != '.' || path[len - 3] != 'x' || path[len - 2] != 'p'
-		|| path[len - 1] != 'm'))
+			|| path[len - 1] != 'm'))
 	{
 		printf("PUTAIN DE MERDE path: |%s|\n", path);
 		close(fd);
@@ -48,7 +54,6 @@ static int	check_existence_of_path(char *path)
 		ft_putchar_fd('\n', 2);
 		return (FAILURE);
 	}
-	
 	return (SUCCESS);
 }
 
@@ -63,7 +68,7 @@ unsigned long	convert_rgb_to_hex(int *rgb_array)
 	g = rgb_array[1];
 	b = rgb_array[2];
 	result = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
-    return (result);
+	return (result);
 }
 
 int	check_info_retrieved(t_graphics *graphics)

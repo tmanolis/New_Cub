@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   05_check_map_borders.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 13:29:38 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/06/30 13:31:02 by msanjuan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	check_top_or_bottom(char **map_array, int i, int j)
 {
-	while (map_array[i][j] == ' ' || map_array[i][j] == '\t' || map_array[i][j] == '\r'
-	|| map_array[i][j] == '\v' || map_array[i][j] == '\f')
+	while (map_array[i][j] == ' ' || map_array[i][j] == '\t'
+	|| map_array[i][j] == '\r' || map_array[i][j] == '\v'
+	|| map_array[i][j] == '\f')
 		j++;
 	while (map_array[i][j])
 	{
@@ -14,7 +27,7 @@ int	check_top_or_bottom(char **map_array, int i, int j)
 	return (SUCCESS);
 }
 
-int check_map_sides(t_map *map, char **map_array)
+int	check_map_sides(t_map *map, char **map_array)
 {
 	int	i;
 	int	j;
@@ -36,9 +49,9 @@ int check_map_sides(t_map *map, char **map_array)
 
 int	check_left_side_is_closed(char **map_array)
 {
-	int		i;
-	int 	j;
-	
+	int	i;
+	int	j;
+
 	j = 0;
 	while (map_array[1][j] && (is_a_white_space(map_array[1][j]) == SUCCESS
 		|| map_array[1][j] == '1'))
@@ -65,8 +78,8 @@ int	check_left_side_is_closed(char **map_array)
 
 static int	check_first_line_on_right_side(char **map_array)
 {
-	int 	j;
-	
+	int	j;
+
 	j = ft_strlen(map_array[1]) - 1;
 	while (map_array[1][j] && (is_a_white_space(map_array[1][j]) == SUCCESS
 		|| map_array[1][j] == '1'))
@@ -78,12 +91,12 @@ static int	check_first_line_on_right_side(char **map_array)
 
 int	check_right_side_is_closed(char **map_array)
 {
-	int		i;
-	int 	j;
-	
+	int	i;
+	int	j;
+
 	if (check_first_line_on_right_side(map_array) == FAILURE)
 		return (FAILURE);
-	i = 2; 
+	i = 2;
 	while (map_array[i] && ft_strchr(map_array[i], '0'))
 	{
 		j = ft_strlen(map_array[i]) - 1;

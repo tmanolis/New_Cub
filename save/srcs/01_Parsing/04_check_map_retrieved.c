@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   04_check_map_retrieved.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 13:22:39 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/06/30 13:27:10 by msanjuan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	check_letters(t_map *map, char **map_array)
@@ -12,7 +24,8 @@ static int	check_letters(t_map *map, char **map_array)
 		j = 0;
 		while (map_array[i][j])
 		{
-			while (map->map[i][j] == ' ' || map->map[i][j] == '\t' || map->map[i][j] == '\r'
+			while (map->map[i][j] == ' ' || map->map[i][j] == '\t'
+			|| map->map[i][j] == '\r'
 			|| map->map[i][j] == '\v' || map->map[i][j] == '\f')
 				j++;
 			if (!(ft_strchr("10NSEW", map_array[i][j])))
@@ -30,8 +43,8 @@ static int	check_letters(t_map *map, char **map_array)
 
 static int	check_position_is_valid(t_map *map, char **map_array)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = map->p_y;
 	j = map->p_x;
@@ -48,7 +61,7 @@ static int	check_position_is_valid(t_map *map, char **map_array)
 static int	check_player_position(t_map *map, char **map_array)
 {
 	int	i;
-	int j;
+	int	j;
 
 	if (map->p_direction == '0')
 		return (print_error("The map should have a player_direction"));
@@ -76,7 +89,7 @@ static int	check_player_position(t_map *map, char **map_array)
 static int	check_map_is_at_the_end(t_map *map)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = map->index_end_of_map;
 	while (map->file[i])
@@ -84,8 +97,9 @@ static int	check_map_is_at_the_end(t_map *map)
 		j = 0;
 		while (map->file[i][j])
 		{
-			if (map->file[i][j] != ' ' && map->file[i][j] != '\t' && map->file[i][j] != '\r'
-			&& map->file[i][j] != '\n' && map->file[i][j] != '\v' && map->file[i][j] != '\f')
+			if (map->file[i][j] != ' ' && map->file[i][j] != '\t'
+				&& map->file[i][j] != '\r' && map->file[i][j] != '\n'
+				&& map->file[i][j] != '\v' && map->file[i][j] != '\f')
 				return (FAILURE);
 			j++;
 		}
