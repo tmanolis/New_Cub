@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:05:41 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/06/30 19:22:14 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:34:58 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@
 // GAME PHYSICS
 # define PLAYER_SIZE 0.15
 
+typedef unsigned long	t_ulong;
+
 enum e_output
-{ 
+{
 	SUCCESS = 0,
 	FAILURE = 1,
 	ERR = 2,
@@ -77,7 +79,7 @@ enum e_output
 };
 
 enum e_cardinals
-{ 
+{
 	NO,
 	SO,
 	WE,
@@ -85,7 +87,7 @@ enum e_cardinals
 };
 
 enum e_map
-{ 
+{
 	TILE = '0',
 	WALL = '1'
 };
@@ -102,7 +104,7 @@ int		fill_in_the_floor_or_ceiling(t_graphics *graph, char *line, int j);
 // 01_PARSING - 02_parse_map_description.c
 int		retrieve_map_description(t_data *data, char **map, int i);
 // 01_PARSING - 03_check_info_retrieved.c
-unsigned long	convert_rgb_to_hex(int *rgb_array);
+t_ulong	convert_rgb_to_hex(int *rgb_array);
 int		check_info_retrieved(t_graphics *graphics);
 // 01_PARSING - 04_check_map_retrieved.c
 int		check_map_retrieved(t_map *map, char **map_array);
@@ -131,7 +133,8 @@ double	player_offset(t_data *data, char letter);
 int		init_window(t_data *data);
 void	init_img_to_display(t_data *data, t_img *img);
 // 03_GRAPHICS - 01_raycasting_init.c
-void	init_raycasting_variables(t_data *data, t_raycast *ray, t_map *map, int x);
+void	init_raycasting_variables(t_data *data, t_raycast *ray, t_map *map, \
+	int x);
 void	calculate_raydirx_and_stepx(t_raycast *ray, t_map *map);
 void	which_distance_if_wall_hit(t_raycast *ray, t_map *map);
 void	calculate_wall_specs(t_data *data, t_raycast *ray, t_map *map);
