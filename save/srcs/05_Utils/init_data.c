@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_data.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmanolis <tmanolis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 17:18:51 by tmanolis          #+#    #+#             */
+/*   Updated: 2022/06/30 17:19:00 by tmanolis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	init_graphics(t_graphics *graphics)
@@ -16,7 +28,6 @@ void	init_map(t_map *map)
 	map->path = NULL;
 	map->file = NULL;
 	map->map = NULL;
-	// map->map_int = NULL;
 }
 
 void	init_data(t_data *data)

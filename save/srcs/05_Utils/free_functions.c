@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_functions.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmanolis <tmanolis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 17:25:05 by tmanolis          #+#    #+#             */
+/*   Updated: 2022/06/30 17:26:11 by tmanolis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	free_double_array(char **tab)
@@ -45,7 +57,6 @@ static void	free_map(t_map *map)
 		free_double_array(map->map_marc);
 }
 
-
 void	free_textures(t_data *data, t_tex tex)
 {
 	if (tex.no.mlx_img)
@@ -62,7 +73,5 @@ int	free_for_your_life(t_data *data)
 {
 	free_graphics(&data->graphics);
 	free_map(&data->map);
-	// if (data->mlx)
-	// 	free(data->mlx);
 	return (FAILURE);
 }
