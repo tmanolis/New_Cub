@@ -22,7 +22,7 @@
 #  define O_DIRECTORY 00200000
 # endif
 
-# define TITLE "Les Traductrices Interpretes"
+# define TITLE "LES TRADUCTRICES INTERPRETES"
 
 // ERROR MESSAGES
 # define MSG_WRONG_FILE "Is not an existing .cub file\n"
@@ -75,14 +75,15 @@ enum e_map
 	WALL = '1'
 };
 
-extern int	worldMap[24][24];
 // 00_ERR_HANDLING - 00_check_arg.c
 int		check_arg(char *arg);
 
 // 01_PARSING - 00_open_file.c
 void	create_map_from_cub_file(char *path, t_data *data);
-// 01_PARSING - 01_retrieve_info_in_file.c
+// 01_PARSING - 01_00_retrieve_path_textures.c
 int		retrieve_info_in_file(t_data *data, char **map);
+// 01_PARSING - 01_01_retrieve_floor_ceiling.c
+int		fill_in_the_floor_or_ceiling(t_graphics *graph, char *line, int j);
 // 01_PARSING - 02_parse_map_description.c
 int		retrieve_map_description(t_data *data, char **map, int i);
 // 01_PARSING - 03_check_info_retrieved.c
