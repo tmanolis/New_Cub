@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   02_retrieve_map_description.c                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 13:16:45 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/06/30 13:19:00 by msanjuan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	count_map_lines(t_data *data, char **file, int i)
 {
-	int index_value;
+	int	index_value;
 	int	j;
 
 	index_value = i;
@@ -13,7 +25,7 @@ int	count_map_lines(t_data *data, char **file, int i)
 		|| file[i][j] == '\v' || file[i][j] == '\f')
 			j++;
 		if (file[i][j] != '1')
-			break;
+			break ;
 		i++;
 	}
 	data->map.index_end_of_map = i;
@@ -22,7 +34,7 @@ int	count_map_lines(t_data *data, char **file, int i)
 
 int	fill_map_array(t_map *map, char **map_array, int index)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < map->nb_line)
@@ -53,19 +65,21 @@ int	get_map_info(t_data *data, char **file, int i)
 
 void	change_space_into_wall(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map->map[i])
 	{
 		j = 0;
-		while (map->map[i][j] == ' ' || map->map[i][j] == '\t' || map->map[i][j] == '\r'
+		while (map->map[i][j] == ' ' || map->map[i][j] == '\t'
+		|| map->map[i][j] == '\r'
 		|| map->map[i][j] == '\v' || map->map[i][j] == '\f')
 			j++;
 		while (map->map[i][++j])
 		{
-			if (map->map[i][j] == ' ' && j != map->map[i][ft_strlen(map->map[i]) - 1])
+			if (map->map[i][j] == ' '
+				&& j != map->map[i][ft_strlen(map->map[i]) - 1])
 				map->map[i][j] = '1';
 		}
 		i++;
