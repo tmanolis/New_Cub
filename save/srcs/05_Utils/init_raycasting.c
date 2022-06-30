@@ -37,6 +37,6 @@ void	init_raycasting(t_map *map)
 	map->pos_x = (double)map->p_y + 0.5;
 	map->pos_y = (double)map->p_x + 0.5;
 	set_player_direction(map, map->p_direction);
-	map->move_speed = 0.05; // test, valeur arbitraire
+	map->move_speed = 0.06; // test, valeur arbitraire
 	map->rotate_speed = 0.02;
 }

@@ -1,0 +1,20 @@
+
+111111111111111111111111
+100110000100000000000001
+100000100000000W00000001
+111111111111111111111111
+
+   WE                            assets/grey_stone.xpm
+NO      assets/purple_stone.xpm
+
+
+
+SO assets/wall_brick.xpm
+
+F      17,    38,     64
+
+EA assets/wood.xpm
+
+
+
+C 218, 234, 235

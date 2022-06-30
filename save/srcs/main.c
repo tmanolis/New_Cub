@@ -97,11 +97,11 @@ int	main(int argc, char **argv)
 		if (check_info_retrieved(&data.graphics) == FAILURE)
 			return (print_error(MSG_INVALID_INFO) && free_for_your_life(&data));
 		check_map_retrieved(&data.map, data.map.map);
-		for (int i = 0; data.map.map[i]; i++)
-			printf("%s\n", data.map.map[i]);
+		// for (int i = 0; data.map.map[i]; i++)
+		// 	printf("%s\n", data.map.map[i]);
 		convert_map_type(&data, data.map.map);
 		init_raycasting(&data.map);
-		printf("x : %f | y : %f\n", data.map.pos_x, data.map.pos_y);
+		// printf("x : %f | y : %f\n", data.map.pos_x, data.map.pos_y);
 		init_window(&data);
 		init_textures(&data);
 		mlx_loop_and_hooks(data);
