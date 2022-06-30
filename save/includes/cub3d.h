@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:05:41 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/06/30 20:06:48 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:19:42 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int		init_window(t_data *data);
 void	init_img_to_display(t_data *data, t_img *img);
 // 03_GRAPHICS - 01_raycasting_init.c
 void	init_raycasting_var(t_data *data, t_raycast *ray, t_map *map, int x);
-void	calculate_raydirx_and_stepx(t_raycast *ray, t_map *map);
+void	calculate_raydir_x_and_step_x(t_raycast *ray, t_map *map);
 void	which_distance_if_wall_hit(t_raycast *ray, t_map *map);
 void	calculate_wall_specs(t_data *data, t_raycast *ray, t_map *map);
 // 03_GRAPHICS - 02_raycasting_engine.c
@@ -146,18 +146,6 @@ void	display_ceiling(t_data *data, t_img *img, int start, int end);
 void	display_floor(t_data *data, t_img *img, int start, int end);
 // 03_GRAPHICS - 04_init_textures.c
 void	init_textures(t_data *data);
-
-// 04_MINIMAP - 00_display.c
-void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int color);
-void	draw_the_2d_map(t_data *data);
-
-// 04_MINIMAP - 01_moves.c
-void	move_player(t_data *data, int keysym);
-// 04_MINIMAP - 02_utils.c
-void	draw_line(void *mlx, void *window, int beginX, int beginY, int endX, int endY, int color);
-// 04_MINIMAP - 03_handlers.c
-int		handle_keypress(int keysym, t_data *data);
-int		render(t_data *data);
 
 // 05_UTILS - change_orientation_map.c
 void	change_orientation_map(t_data *data, char **map_char);

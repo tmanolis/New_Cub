@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:56:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/06/30 12:13:17 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:11:40 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ static int	fill_in_the_correct_dir(t_graphics *graph, char *line, int j)
 {
 	if (line[j + 2] && ft_isprint(line[j + 2]))
 		return (ERR);
-	if (line[j] == 'N' && line[j + 1] == 'O' && !(graph->dir_NO))
-		graph->dir_NO = get_path_of_texture(line, j + 2);
-	else if (line[j] == 'S' && line[j + 1] == 'O' && !(graph->dir_SO))
-		graph->dir_SO = get_path_of_texture(line, j + 2);
-	else if (line[j] == 'W' && line[j + 1] == 'E' && !(graph->dir_WE))
-		graph->dir_WE = get_path_of_texture(line, j + 2);
-	else if (line[j] == 'E' && line[j + 1] == 'A' && !(graph->dir_EA))
-		graph->dir_EA = get_path_of_texture(line, j + 2);
+	if (line[j] == 'N' && line[j + 1] == 'O' && !(graph->dir_no))
+		graph->dir_no = get_path_of_texture(line, j + 2);
+	else if (line[j] == 'S' && line[j + 1] == 'O' && !(graph->dir_so))
+		graph->dir_so = get_path_of_texture(line, j + 2);
+	else if (line[j] == 'W' && line[j + 1] == 'E' && !(graph->dir_we))
+		graph->dir_we = get_path_of_texture(line, j + 2);
+	else if (line[j] == 'E' && line[j + 1] == 'A' && !(graph->dir_ea))
+		graph->dir_ea = get_path_of_texture(line, j + 2);
 	else
 		return (ERR);
 	return (SUCCESS);

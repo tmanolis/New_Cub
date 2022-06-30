@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02_raycasting_engine.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmanolis <tmanolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:42:44 by tmanolis          #+#    #+#             */
-/*   Updated: 2022/06/30 20:02:14 by tmanolis         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:18:33 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static int	get_rgb(char *tex_addr, t_data *data, int add, int y)
 {
 	int	rgb;
 
-	rgb = tex_addr[(int)(data->ray.wallX * T_WIDTH)
+	rgb = tex_addr[(int)(data->ray.wall_x * T_WIDTH)
 		* (data->tex.no.bits_per_pixel >> 3)
-		+ add + (int)((y - data->ray.drawStart * 1.0)
-			/ data->ray.lineHeight * T_HEIGHT)*data->tex.no.line_length];
+		+ add + (int)((y - data->ray.draw_start * 1.0)
+			/ data->ray.line_height * T_HEIGHT)*data->tex.no.line_length];
 	return (rgb);
 }
 
@@ -57,11 +57,11 @@ static void	display_wall_tex(t_data *data, t_raycast *ray, t_img *img, int x)
 	int		y;
 
 	tex_addr = set_wall_direction(data, ray);
-	if (ray->drawStart < 0)
+	if (ray->draw_start < 0)
 		y = 0 ;
 	else
-		y = ray->drawStart;
-	while (y < ray->drawEnd)
+		y = ray->draw_start;
+	while (y < ray->draw_end)
 	{
 		rgb[0] = get_rgb(tex_addr, data, 2, y);
 		rgb[1] = get_rgb(tex_addr, data, 1, y);
@@ -94,12 +94,12 @@ void	calculate_and_display(t_data *data, t_img *img)
 	while (data->pixel < data->win_width)
 	{
 		init_raycasting_var(data, ray, map, data->pixel);
-		calculate_raydirx_and_stepx(ray, map);
+		calculate_raydir_x_and_step_x(ray, map);
 		which_distance_if_wall_hit(ray, map);
 		calculate_wall_specs(data, ray, map);
-		display_ceiling(data, img, 0, ray->drawStart);
+		display_ceiling(data, img, 0, ray->draw_start);
 		display_wall_tex(data, ray, img, data->pixel);
-		display_floor(data, img, ray->drawEnd, W_HEIGHT);
+		display_floor(data, img, ray->draw_end, W_HEIGHT);
 		data->pixel++;
 	}
 }

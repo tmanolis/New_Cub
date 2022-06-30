@@ -51,10 +51,6 @@ SRCS = main.c 									\
 	03_Graphics/02_raycasting_engine.c 			\
 	03_Graphics/03_raycasting_utils.c 			\
 	03_Graphics/04_init_textures.c				\
-	04_Minimap/00_display.c 					\
-	04_Minimap/01_moves.c 						\
-	04_Minimap/02_utils.c 						\
-	04_Minimap/03_handlers.c					\
 	05_Utils/gnl/get_next_line.c 				\
 	05_Utils/gnl/get_next_line_utils.c 			\
 	05_Utils/change_orientation_map.c 			\

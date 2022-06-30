@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:19:32 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/06/30 13:22:17 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:11:40 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ unsigned long	convert_rgb_to_hex(int *rgb_array)
 
 int	check_info_retrieved(t_graphics *graphics)
 {
-	if (!graphics->dir_NO || !graphics->dir_SO || !graphics->dir_WE
-		|| !graphics->dir_EA || !graphics->floor || !graphics->ceiling)
+	if (!graphics->dir_no || !graphics->dir_so || !graphics->dir_we
+		|| !graphics->dir_ea || !graphics->floor || !graphics->ceiling)
 		return (FAILURE);
-	if (check_existence_of_path(graphics->dir_NO) == FAILURE
-		|| check_existence_of_path(graphics->dir_SO) == FAILURE
-		|| check_existence_of_path(graphics->dir_WE) == FAILURE
-		|| check_existence_of_path(graphics->dir_EA) == FAILURE
+	if (check_existence_of_path(graphics->dir_no) == FAILURE
+		|| check_existence_of_path(graphics->dir_so) == FAILURE
+		|| check_existence_of_path(graphics->dir_we) == FAILURE
+		|| check_existence_of_path(graphics->dir_ea) == FAILURE
 		|| check_input_of_rgb(graphics->floor) == FAILURE
 		|| check_input_of_rgb(graphics->ceiling) == FAILURE)
 		return (FAILURE);

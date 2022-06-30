@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmanolis <tmanolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 17:19:25 by tmanolis          #+#    #+#             */
-/*   Updated: 2022/06/30 17:58:15 by tmanolis         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:20:36 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	init_raycasting(t_map *map)
 	map->plane_y = 0.66;
 	set_player_direction(map, map->p_direction);
 	map->move_speed = 0.06;
-	map->rotate_speed = 0.06;
+	map->rotate_speed = 0.04;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmanolis <tmanolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 17:25:05 by tmanolis          #+#    #+#             */
-/*   Updated: 2022/06/30 17:26:11 by tmanolis         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:11:40 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	free_double_array(char **tab)
 
 static void	free_graphics(t_graphics *graphics)
 {
-	if (graphics->dir_NO)
-		free(graphics->dir_NO);
-	if (graphics->dir_SO)
-		free(graphics->dir_SO);
-	if (graphics->dir_WE)
-		free(graphics->dir_WE);
-	if (graphics->dir_EA)
-		free(graphics->dir_EA);
+	if (graphics->dir_no)
+		free(graphics->dir_no);
+	if (graphics->dir_so)
+		free(graphics->dir_so);
+	if (graphics->dir_we)
+		free(graphics->dir_we);
+	if (graphics->dir_ea)
+		free(graphics->dir_ea);
 	if (graphics->floor)
 		free(graphics->floor);
 	if (graphics->ceiling)

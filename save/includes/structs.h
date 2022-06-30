@@ -1,19 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 20:21:48 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/06/30 20:22:53 by msanjuan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct	s_graphics
+typedef struct s_graphics
 {
-	char				*dir_NO;
-	char				*dir_SO;
-	char				*dir_WE;
-	char				*dir_EA;
+	char				*dir_no;
+	char				*dir_so;
+	char				*dir_we;
+	char				*dir_ea;
 	int					*floor;
 	unsigned long		hex_floor;
 	int					*ceiling;
 	unsigned long		hex_ceiling;
 }				t_graphics;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
@@ -55,26 +67,26 @@ typedef struct s_map
 	double		rotate_speed;
 }				t_map;
 
-typedef struct	s_raycast
+typedef struct s_raycast
 {
-	double	cameraX;
-	double	rayDirX;	//direction x
-	double	rayDirY;	//direction y
-	int		mapX;
-	int		mapY;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-	int		stepX;
-	int		stepY;
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	int		mapx;
+	int		mapy;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	wall_dist;
+	int		step_x;
+	int		step_y;
 	int		hit;
-	int		side;		// facing NO/SO or EA/WE
-	int		lineHeight;
-	double	wallX;
-	int		drawStart;
-	int		drawEnd;
+	int		side;
+	int		line_height;
+	double	wall_x;
+	int		draw_start;
+	int		draw_end;
 	int		color;
 }				t_raycast;
 

@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 17:18:51 by tmanolis          #+#    #+#             */
-/*   Updated: 2022/06/30 20:06:43 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:11:40 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	init_graphics(t_graphics *graphics)
 {
-	graphics->dir_NO = NULL;
-	graphics->dir_SO = NULL;
-	graphics->dir_WE = NULL;
-	graphics->dir_EA = NULL;
+	graphics->dir_no = NULL;
+	graphics->dir_so = NULL;
+	graphics->dir_we = NULL;
+	graphics->dir_ea = NULL;
 	graphics->floor = 0;
 	graphics->ceiling = 0;
 }

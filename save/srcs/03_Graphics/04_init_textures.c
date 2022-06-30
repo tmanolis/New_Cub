@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_init_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmanolis <tmanolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:05:05 by tmanolis          #+#    #+#             */
-/*   Updated: 2022/06/30 19:06:03 by tmanolis         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:11:40 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	init_tex(t_data *data, char *tex_path, t_img *tex_img)
 
 void	init_textures(t_data *data)
 {
-	init_tex(data, data->graphics.dir_NO, &data->tex.no);
-	init_tex(data, data->graphics.dir_SO, &data->tex.so);
-	init_tex(data, data->graphics.dir_EA, &data->tex.ea);
-	init_tex(data, data->graphics.dir_WE, &data->tex.we);
+	init_tex(data, data->graphics.dir_no, &data->tex.no);
+	init_tex(data, data->graphics.dir_so, &data->tex.so);
+	init_tex(data, data->graphics.dir_ea, &data->tex.ea);
+	init_tex(data, data->graphics.dir_we, &data->tex.we);
 }
