@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmanolis <tmanolis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 19:05:41 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/06/30 20:04:32 by tmanolis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -15,8 +27,8 @@
 # include "../includes/get_next_line.h"
 # include "../includes/structs.h"
 
-#define _USE_MATH_DEFINES // to enable the use of macro constants such as M_PI
-#include <math.h>
+# define _USE_MATH_DEFINES // to enable the use of macro constants such as M_PI
+# include <math.h>
 
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
@@ -42,8 +54,8 @@
 // MLX
 # define W_HEIGHT 512
 # define W_WIDTH 1024
-# define T_HEIGHT 64 // tjrs à la ligne 4 du .xpm
-# define T_WIDTH 64
+# define T_HEIGHT 64 //64 // tjrs à la ligne 4 du .xpm
+# define T_WIDTH 64 //64
 # define CELL_SIZE 8
 
 // COLORS
@@ -55,8 +67,10 @@
 // GAME PHYSICS
 # define PLAYER_SIZE 0.15
 
+typedef unsigned long	t_ulong;
+
 enum e_output
-{ 
+{
 	SUCCESS = 0,
 	FAILURE = 1,
 	ERR = 2,
@@ -65,7 +79,7 @@ enum e_output
 };
 
 enum e_cardinals
-{ 
+{
 	NO,
 	SO,
 	WE,
@@ -73,7 +87,7 @@ enum e_cardinals
 };
 
 enum e_map
-{ 
+{
 	TILE = '0',
 	WALL = '1'
 };
@@ -90,7 +104,7 @@ int		fill_in_the_floor_or_ceiling(t_graphics *graph, char *line, int j);
 // 01_PARSING - 02_parse_map_description.c
 int		retrieve_map_description(t_data *data, char **map, int i);
 // 01_PARSING - 03_check_info_retrieved.c
-unsigned long	convert_rgb_to_hex(int *rgb_array);
+t_ulong	convert_rgb_to_hex(int *rgb_array);
 int		check_info_retrieved(t_graphics *graphics);
 // 01_PARSING - 04_check_map_retrieved.c
 int		check_map_retrieved(t_map *map, char **map_array);
@@ -112,6 +126,8 @@ void	move_backward(t_data *data);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
 void	rotate_sight(t_data *data, double ro_speed);
+// 02_EVENTS_HANDLING - 03_player_offset.c
+double	player_offset(t_data *data, char letter);
 
 // 03_GRAPHICS - 00_init_window.c
 int		init_window(t_data *data);
@@ -143,6 +159,8 @@ void	draw_line(void *mlx, void *window, int beginX, int beginY, int endX, int en
 int		handle_keypress(int keysym, t_data *data);
 int		render(t_data *data);
 
+// 05_UTILS - change_orientation_map.c
+void	change_orientation_map(t_data *data, char **map_char);
 // 05_UTILS - error_exit.c
 void	error_exit(t_data *data, char *str);
 // 05_UTILS - free_functions.c

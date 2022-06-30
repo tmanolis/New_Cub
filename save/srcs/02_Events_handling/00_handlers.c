@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:34:25 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/06/30 13:34:43 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:57:01 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ int	raycasting_handler(t_data *data)
 	if (data->img.mlx_img)
 		mlx_destroy_image(data->mlx, data->img.mlx_img);
 	data->img.mlx_img = tmp_img.mlx_img;
-	data->img.addr =  tmp_img.addr;
+	data->img.addr = tmp_img.addr;
 	return (0);
 }

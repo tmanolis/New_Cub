@@ -1,17 +1,17 @@
-   WE                            assets/grey_stone.xpm 
-NO      assets/purple_stone.xpm
+   WE                            assets/manu1.xpm 
+NO      assets/manu2.xpm
 
 
 
-SO assets/wall_brick.xpm
+SO assets/manu3.xpm
 
-F      28  ,    100,    10
+F   69, 222, 199
 
-EA assets/wood.xpm
+EA assets/manu4.xpm
 
 
 
-C 225,   30,4
+C 235, 198, 52
 
 111111111111111111111111
 100000000000000000000001

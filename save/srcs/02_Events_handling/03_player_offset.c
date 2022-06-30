@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_hooks.c                                         :+:      :+:    :+:   */
+/*   03_player_offset.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 17:57:41 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/06/30 17:58:15 by msanjuan         ###   ########.fr       */
+/*   Created: 2022/06/30 17:58:55 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/06/30 18:22:45 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	mlx_loop_and_hooks(t_data data)
+double	player_offset(t_data *data, char letter)
 {
-	mlx_loop_hook(data.mlx, &raycasting_handler, &data);
-	mlx_hook(data.win, KeyPress, KeyPressMask, &key_press_handler, &data);
-	mlx_hook(data.win, ClientMessage, LeaveWindowMask, \
-		&cross_btn_handler, &data);
-	mlx_loop(data.mlx);
+	double	result;
+
+	result = PLAYER_SIZE;
+	if ((letter == 'X' && data->map.dir_x < 0)
+		|| (letter == 'Y' && data->map.dir_y < 0))
+	{	
+		result = PLAYER_SIZE * -1;
+		return (result);
+	}
+	return (result);
 }
