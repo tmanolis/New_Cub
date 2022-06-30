@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   00_handlers.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 13:34:25 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/06/30 13:34:43 by msanjuan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	cross_btn_handler(t_data *data)
@@ -38,7 +50,7 @@ int	key_press_handler(int keysym, t_data *data)
 
 int	raycasting_handler(t_data *data)
 {
-	t_img		tmp_img;
+	t_img	tmp_img;
 
 	init_img_to_display(data, &tmp_img);
 	calculate_and_display(data, &tmp_img);
