@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_raycasting.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmanolis <tmanolis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 17:19:25 by tmanolis          #+#    #+#             */
+/*   Updated: 2022/06/30 17:20:07 by tmanolis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	set_player_direction(t_map *map, char dir)
@@ -37,6 +49,6 @@ void	init_raycasting(t_map *map)
 	map->pos_x = (double)map->p_y + 0.5;
 	map->pos_y = (double)map->p_x + 0.5;
 	set_player_direction(map, map->p_direction);
-	map->move_speed = 0.05; // test, valeur arbitraire
+	map->move_speed = 0.05;
 	map->rotate_speed = 0.02;
 }
