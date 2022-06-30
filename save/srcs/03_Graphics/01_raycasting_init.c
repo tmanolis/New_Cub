@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   01_raycasting_init.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmanolis <tmanolis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 18:15:01 by tmanolis          #+#    #+#             */
+/*   Updated: 2022/06/30 18:23:19 by tmanolis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void	init_raycasting_variables(t_data *data, t_raycast *ray, t_map *map, int x)
+void	init_raycasting_var(t_data *data, t_raycast *ray, t_map *map, int x)
 {
 	ray->cameraX = 2 * x / (double)data->win_width - 1;
 	ray->rayDirX = map->dir_x + map->plane_x * ray->cameraX;
@@ -9,7 +21,7 @@ void	init_raycasting_variables(t_data *data, t_raycast *ray, t_map *map, int x)
 	ray->mapY = (int)map->pos_y;
 	ray->deltaDistX = fabs(1 / ray->rayDirX);
 	ray->deltaDistY = fabs(1 / ray->rayDirY);
-	ray->hit = 0; 
+	ray->hit = 0;
 }
 
 void	calculate_raydirx_and_stepx(t_raycast *ray, t_map *map)
@@ -36,7 +48,6 @@ void	calculate_raydirx_and_stepx(t_raycast *ray, t_map *map)
 	}
 }
 
-// LE PB : ca segfault quand on arrive a la lettre du joueur
 void	which_distance_if_wall_hit(t_raycast *ray, t_map *map)
 {
 	while (ray->hit == 0)
@@ -45,13 +56,19 @@ void	which_distance_if_wall_hit(t_raycast *ray, t_map *map)
 		{
 			ray->sideDistX += ray->deltaDistX;
 			ray->mapX += ray->stepX;
-			ray->side = (ray->rayDirX > 0) ? EA : WE;
+			if (ray->rayDirX > 0)
+				ray->side = EA;
+			else
+				ray->side = WE;
 		}
 		else
 		{
 			ray->sideDistY += ray->deltaDistY;
 			ray->mapY += ray->stepY;
-			ray->side = (ray->rayDirY > 0) ? SO : NO;
+			if (ray->rayDirY > 0)
+				ray->side = SO;
+			else
+				ray->side = NO;
 		}
 		if (map->map_marc[ray->mapY][ray->mapX] == '1')
 			ray->hit = 1;
@@ -61,15 +78,15 @@ void	which_distance_if_wall_hit(t_raycast *ray, t_map *map)
 void	calculate_wall_specs(t_data *data, t_raycast *ray, t_map *map)
 {
 	if (ray->side == EA || ray->side == WE)
-		ray->perpWallDist = (ray->mapX - map->pos_x + (1 - ray->stepX) / 2) / ray->rayDirX;
+		ray->perpWallDist = (ray->mapX - map->pos_x + (1 - ray->stepX) / 2) \
+		/ ray->rayDirX;
 	else
-		ray->perpWallDist = (ray->mapY - map->pos_y + (1 - ray->stepY) / 2) / ray->rayDirY;
+		ray->perpWallDist = (ray->mapY - map->pos_y + (1 - ray->stepY) / 2) \
+		/ ray->rayDirY;
 	ray->lineHeight = (int)(data->win_height / ray->perpWallDist);
 	ray->drawStart = -(ray->lineHeight) / 2 + data->win_height / 2;
-	// if(ray->drawStart < 0)
-	// 	ray->drawStart = 0;
 	ray->drawEnd = ray->lineHeight / 2 + data->win_height / 2;
-	if(ray->drawEnd >= data->win_height)
+	if (ray->drawEnd >= data->win_height)
 		ray->drawEnd = data->win_height - 1;
 	if (ray->side == EA || ray->side == WE)
 		ray->wallX = map->pos_y + ray->perpWallDist * ray->rayDirY;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   02_raycasting_engine.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmanolis <tmanolis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 18:42:44 by tmanolis          #+#    #+#             */
+/*   Updated: 2022/06/30 20:02:14 by tmanolis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 /**
@@ -21,13 +33,14 @@ static char	*set_wall_direction(t_data *data, t_raycast *ray)
  * 			in the array tex_addr.
  * 
  */
-static int	get_rgb(char *tex_addr, t_raycast *ray, t_data *data, int add, int y)
+static int	get_rgb(char *tex_addr, t_data *data, int add, int y)
 {
 	int	rgb;
 
-	rgb = tex_addr[(int)(ray->wallX * T_WIDTH) * (data->tex.no.bits_per_pixel >> 3)
-			+ add + (int)((y - ray->drawStart * 1.0) 
-				/ ray->lineHeight * T_HEIGHT) * data->tex.no.line_length];
+	rgb = tex_addr[(int)(data->ray.wallX * T_WIDTH)
+		* (data->tex.no.bits_per_pixel >> 3)
+		+ add + (int)((y - data->ray.drawStart * 1.0)
+			/ data->ray.lineHeight * T_HEIGHT)*data->tex.no.line_length];
 	return (rgb);
 }
 
@@ -36,23 +49,24 @@ static int	get_rgb(char *tex_addr, t_raycast *ray, t_data *data, int add, int y)
  * 			cardinal direction.
  * 
  */
-static void	display_wall_textures(t_data *data, t_raycast *ray, t_img *img, int x)
+static void	display_wall_tex(t_data *data, t_raycast *ray, t_img *img, int x)
 {
 	int		color;
-	int		r;
-	int		g;
-	int		b;
+	int		rgb[3];
 	char	*tex_addr;
+	int		y;
 
 	tex_addr = set_wall_direction(data, ray);
-	int y = (ray->drawStart < 0) ? 0 : ray->drawStart;
-	// for (int y = ray->drawStart; y < ray->drawEnd; y++)
+	if (ray->drawStart < 0)
+		y = 0 ;
+	else
+		y = ray->drawStart;
 	while (y < ray->drawEnd)
 	{
-		r = get_rgb(tex_addr, ray, data, 2, y);
-		g = get_rgb(tex_addr, ray, data, 1, y);
-		b = get_rgb(tex_addr, ray, data, 0, y);
-		color = rgb_to_hex(r, g, b);
+		rgb[0] = get_rgb(tex_addr, data, 2, y);
+		rgb[1] = get_rgb(tex_addr, data, 1, y);
+		rgb[2] = get_rgb(tex_addr, data, 0, y);
+		color = rgb_to_hex(rgb[0], rgb[1], rgb[2]);
 		if (ray->side == EA || ray->side == WE)
 			color = (color >> 1) & 8355711;
 		my_mlx_pixel_put(img, x, y, color);
@@ -73,24 +87,19 @@ void	calculate_and_display(t_data *data, t_img *img)
 {
 	t_map			*map;
 	t_raycast		*ray;
-	unsigned long	ceiling;
-	unsigned long	floor;
-	int				x;
 
 	map = &data->map;
 	ray = &data->ray;
-	ceiling = data->graphics.hex_ceiling;
-	floor = data->graphics.hex_floor;
-	x = 0;
-	while (x < data->win_width)
+	data->pixel = 0;
+	while (data->pixel < data->win_width)
 	{
-		init_raycasting_variables(data, ray, map, x);
+		init_raycasting_var(data, ray, map, data->pixel);
 		calculate_raydirx_and_stepx(ray, map);
 		which_distance_if_wall_hit(ray, map);
 		calculate_wall_specs(data, ray, map);
-		display_background(ceiling, img, 0, ray->drawStart, x);
-		display_wall_textures(data, ray, img, x);
-		display_background(floor, img, ray->drawEnd, W_HEIGHT, x);
-		x++;
+		display_ceiling(data, img, 0, ray->drawStart);
+		display_wall_tex(data, ray, img, data->pixel);
+		display_floor(data, img, ray->drawEnd, W_HEIGHT);
+		data->pixel++;
 	}
 }
