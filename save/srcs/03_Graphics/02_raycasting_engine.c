@@ -53,6 +53,8 @@ static void	display_wall_textures(t_data *data, t_raycast *ray, t_img *img, int 
 		color = rgb_to_hex(r, g, b);
 		if (ray->side == EA || ray->side == WE)
 			color = (color >> 1) & 8355711;
+		//if (x < 0 || y < 0)
+		//	return ;
 		my_mlx_pixel_put(img, x, y, color);
 	}
 }

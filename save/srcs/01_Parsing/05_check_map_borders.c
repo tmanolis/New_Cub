@@ -71,7 +71,7 @@ static int	check_first_line_on_right_side(char **map_array)
 	while (map_array[1][j] && (is_a_white_space(map_array[1][j]) == SUCCESS
 		|| map_array[1][j] == '1'))
 		j--;
-	if (map_array[0][j] != '1')
+	if (((int)ft_strlen(map_array[0]) - 1 < j - 1) || (map_array[0][j] != '1'))
 		return (FAILURE);
 	return (SUCCESS);
 }

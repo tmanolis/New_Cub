@@ -96,7 +96,8 @@ int	main(int argc, char **argv)
 			return (free_for_your_life(&data));
 		if (check_info_retrieved(&data.graphics) == FAILURE)
 			return (print_error(MSG_INVALID_INFO) && free_for_your_life(&data));
-		check_map_retrieved(&data.map, data.map.map);
+		if (check_map_retrieved(&data.map, data.map.map) == FAILURE)
+			return (print_error(MSG_INVALID_INFO) && free_for_your_life(&data));
 		// for (int i = 0; data.map.map[i]; i++)
 		// 	printf("%s\n", data.map.map[i]);
 		convert_map_type(&data, data.map.map);
