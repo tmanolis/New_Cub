@@ -21,8 +21,8 @@ MLX_DIR = minilibx-linux
 #########################################
 #			FLAGS COMPILATION			#
 #########################################
-CFLAGS = -Wall -Werror -Wextra -g -Wno-unused
-#CFLAGS += -fsanitize=address  
+CFLAGS = -Wall -Werror -Wextra -g 
+#CFLAGS += -fsanitize=address -Wno-unused
 IFLAGS := -I includes/
 LFLAGS := -L$(LIBFT_DIR) -lft
 MFLAGS = -ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)

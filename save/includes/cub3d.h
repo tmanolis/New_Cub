@@ -52,6 +52,9 @@
 # define PURPLE 0x67539E
 # define BLACK 0x000000
 
+// GAME PHYSICS
+# define PLAYER_SIZE 0.15
+
 enum e_output
 { 
 	SUCCESS = 0,
@@ -150,8 +153,5 @@ void	init_raycasting(t_map *map);
 // 05_UTILS - utils_functions.c
 int		is_a_white_space(char c);
 int		print_error(char *str);
-
-
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 #endif
