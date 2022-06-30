@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:05:41 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/06/30 19:47:55 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:06:48 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,7 @@ double	player_offset(t_data *data, char letter);
 int		init_window(t_data *data);
 void	init_img_to_display(t_data *data, t_img *img);
 // 03_GRAPHICS - 01_raycasting_init.c
-void	init_raycasting_variables(t_data *data, t_raycast *ray, t_map *map, \
-	int x);
+void	init_raycasting_var(t_data *data, t_raycast *ray, t_map *map, int x);
 void	calculate_raydirx_and_stepx(t_raycast *ray, t_map *map);
 void	which_distance_if_wall_hit(t_raycast *ray, t_map *map);
 void	calculate_wall_specs(t_data *data, t_raycast *ray, t_map *map);
@@ -143,7 +142,8 @@ void	calculate_and_display(t_data *data, t_img *img);
 // 03_GRAPHICS - 03_raycasting_utils.c
 int		rgb_to_hex(int r, int g, int b);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	display_background(unsigned long color, t_img *img, int start, int end, int x);
+void	display_ceiling(t_data *data, t_img *img, int start, int end);
+void	display_floor(t_data *data, t_img *img, int start, int end);
 // 03_GRAPHICS - 04_init_textures.c
 void	init_textures(t_data *data);
 

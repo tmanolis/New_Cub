@@ -89,6 +89,7 @@ typedef struct s_data
 	t_img		img;
 	t_tex		tex;
 	t_raycast	ray;
+	int			pixel;
 }				t_data;
 
 #endif
