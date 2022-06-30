@@ -41,6 +41,8 @@ static void	free_map(t_map *map)
 		free_double_array(map->file);
 	if (map->map)
 		free_double_array(map->map);
+	if (map->map_marc)
+		free_double_array(map->map_marc);
 }
 
 

@@ -2,9 +2,13 @@
 
 int	cross_btn_handler(t_data *data)
 {
+	if (data->img.mlx_img)
+		mlx_destroy_image(data->mlx, data->img.mlx_img);
 	mlx_destroy_window(data->mlx, data->win);
 	data->win = NULL;
+	free_textures(data, data->tex);
 	mlx_destroy_display(data->mlx);
+	free(data->mlx);
 	free_for_your_life(data);
 	exit(0);
 	return (0);
@@ -26,10 +30,13 @@ int	key_press_handler(int keysym, t_data *data)
 		rotate_sight(data, data->map.rotate_speed);
 	if (keysym == XK_Escape)
 	{
+		if (data->img.mlx_img)
+			mlx_destroy_image(data->mlx, data->img.mlx_img);
 		mlx_destroy_window(data->mlx, data->win);
 		data->win = NULL;
 		free_textures(data, data->tex);
 		mlx_destroy_display(data->mlx);
+		free(data->mlx);
 		free_for_your_life(data);
 		exit(0);
 	}

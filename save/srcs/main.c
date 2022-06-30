@@ -58,14 +58,14 @@ void	convert_map_type(t_data *data, char **map_char)
 			biggest_len = ft_strlen(map_char[i]);
 		i++;
 	}
-	data->map.map_marc = (char **)malloc(sizeof(char *) * biggest_len + 1);
+	data->map.map_marc = (char **)malloc(sizeof(char *) * (biggest_len + 1));
 	i = 0;
 	x = 0;
 	y = 0;
 	while (map_char[y][x])
 	{
 		j = 0;
-		data->map.map_marc[i] = (char *)malloc(sizeof(char) * data->map.nb_line + 1);
+		data->map.map_marc[i] = (char *)malloc(sizeof(char) * (data->map.nb_line + 1));
 		while (y < data->map.nb_line)
 		{
 			data->map.map_marc[i][j] = map_char[y][x];
@@ -78,8 +78,8 @@ void	convert_map_type(t_data *data, char **map_char)
 		x++;
 	}
 	data->map.map_marc[i] = NULL;
-	for (int k = 0; data->map.map_marc[k]; k++)
-		printf("MARC : %s\n", data->map.map_marc[k]);
+	// for (int k = 0; data->map.map_marc[k]; k++)
+	// 	printf("MARC : %s\n", data->map.map_marc[k]);
 }
 
 int	main(int argc, char **argv)
