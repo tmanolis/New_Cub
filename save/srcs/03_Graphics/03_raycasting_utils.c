@@ -32,6 +32,8 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
  */
 void	display_background(unsigned long color, t_img *img, int start, int end, int x)
 {
+	if (start < 0)
+		start = 0;
 	while (start < end)
 	{
 		my_mlx_pixel_put(img, x, start, color);

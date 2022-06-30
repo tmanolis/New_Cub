@@ -45,7 +45,9 @@ static void	display_wall_textures(t_data *data, t_raycast *ray, t_img *img, int 
 	char	*tex_addr;
 
 	tex_addr = set_wall_direction(data, ray);
-	for (int y = ray->drawStart; y < ray->drawEnd; y++)
+	int y = (ray->drawStart < 0) ? 0 : ray->drawStart;
+	// for (int y = ray->drawStart; y < ray->drawEnd; y++)
+	while (y < ray->drawEnd)
 	{
 		r = get_rgb(tex_addr, ray, data, 2, y);
 		g = get_rgb(tex_addr, ray, data, 1, y);
@@ -53,9 +55,8 @@ static void	display_wall_textures(t_data *data, t_raycast *ray, t_img *img, int 
 		color = rgb_to_hex(r, g, b);
 		if (ray->side == EA || ray->side == WE)
 			color = (color >> 1) & 8355711;
-		//if (x < 0 || y < 0)
-		//	return ;
 		my_mlx_pixel_put(img, x, y, color);
+		y++;
 	}
 }
 

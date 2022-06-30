@@ -3,18 +3,23 @@
 // Pattern : "+" symbols everywhere
 void	move_forward(t_data *data)
 {
-	int	y1;
-	int	x1;
-	int	y2;
-	int	x2;
-
-	y1 = (int)(data->map.pos_x + data->map.dir_x * data->map.move_speed);
-	x1 = (int)data->map.pos_y;
-	y2 = (int)(data->map.pos_x);
-	x2 = (int)(data->map.pos_y + data->map.dir_y * data->map.move_speed);
-	if (data->map.map_marc[x1][y1] != WALL)
+	double x1;
+	double y1;
+	double x2;
+	double y2;
+	double p_size1 = PLAYER_SIZE;
+	if (data->map.dir_x < 0)
+		p_size1 = -p_size1;
+	double p_size2 = PLAYER_SIZE;
+	if (data->map.dir_y < 0)
+		p_size2 = -p_size2;
+	y1 = (data->map.pos_x + data->map.dir_x * data->map.move_speed + p_size1);
+	x1 = (data->map.pos_y + p_size2);
+	y2 = (data->map.pos_x + p_size1);
+	x2 = (data->map.pos_y + data->map.dir_y * data->map.move_speed + p_size2);
+	if (data->map.map_marc[(int)x1][(int)y1] != WALL)
 		data->map.pos_x += data->map.dir_x * data->map.move_speed;
-	if (data->map.map_marc[x2][y2] != WALL)
+	if (data->map.map_marc[(int)x2][(int)y2] != WALL)
 		data->map.pos_y += data->map.dir_y * data->map.move_speed;
 }
 
@@ -44,13 +49,13 @@ void	move_left(t_data *data)
 	int	y2;
 	int	x2;
 
-	y1 = (int)(data->map.pos_x - data->map.dir_x * data->map.move_speed);
-	x1 = (int)(data->map.pos_y);
-	y2 = (int)(data->map.pos_x);
-	x2 = (int)(data->map.pos_y + data->map.dir_y * data->map.move_speed);
-	if (data->map.map_marc[x1][y1] != WALL)
+	y1 = (data->map.pos_x - data->map.dir_x * data->map.move_speed);
+	x1 = (data->map.pos_y);
+	y2 = (data->map.pos_x);
+	x2 = (data->map.pos_y + data->map.dir_y * data->map.move_speed);
+	if (data->map.map_marc[(int)x1][(int)y1] != WALL)
 		data->map.pos_x -= data->map.dir_y * data->map.move_speed;
-	if (data->map.map_marc[x2][y2] != WALL)
+	if (data->map.map_marc[(int)x2][(int)y2] != WALL)
 		data->map.pos_y += data->map.dir_x * data->map.move_speed;
 }
 

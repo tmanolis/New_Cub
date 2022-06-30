@@ -66,8 +66,8 @@ void	calculate_wall_specs(t_data *data, t_raycast *ray, t_map *map)
 		ray->perpWallDist = (ray->mapY - map->pos_y + (1 - ray->stepY) / 2) / ray->rayDirY;
 	ray->lineHeight = (int)(data->win_height / ray->perpWallDist);
 	ray->drawStart = -(ray->lineHeight) / 2 + data->win_height / 2;
-	if(ray->drawStart < 0)
-		ray->drawStart = 0;
+	// if(ray->drawStart < 0)
+	// 	ray->drawStart = 0;
 	ray->drawEnd = ray->lineHeight / 2 + data->win_height / 2;
 	if(ray->drawEnd >= data->win_height)
 		ray->drawEnd = data->win_height - 1;

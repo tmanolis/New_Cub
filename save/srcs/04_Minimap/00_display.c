@@ -29,24 +29,24 @@ void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int c
 	}
 }
 
-// avec les i et j set à 1, on a un petit espace esthetique entre chaque cube
-static void	draw_a_cell2(t_data *data, int beginX, int beginY, int lenX, int lenY, int color)
-{
-	int	i;
-	int	j;
+// // avec les i et j set à 1, on a un petit espace esthetique entre chaque cube
+// static void	draw_a_cell2(t_data *data, int beginX, int beginY, int lenX, int lenY, int color)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	while (i < lenX)
-	{
-		j = 0;
-		while (j < lenY)
-		{
-			my_mlx_pixel_put(&data->img, beginX + i, beginY + j, color);
-			j++;
-		}
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < lenX)
+// 	{
+// 		j = 0;
+// 		while (j < lenY)
+// 		{
+// 			my_mlx_pixel_put(&data->img, beginX + i, beginY + j, color);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
 
 static void	draw_player_pos(t_data *data)
