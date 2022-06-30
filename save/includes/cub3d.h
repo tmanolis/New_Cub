@@ -42,8 +42,8 @@
 // MLX
 # define W_HEIGHT 512
 # define W_WIDTH 1024
-# define T_HEIGHT 64 // tjrs à la ligne 4 du .xpm
-# define T_WIDTH 64
+# define T_HEIGHT 150 //64 // tjrs à la ligne 4 du .xpm
+# define T_WIDTH 150 //64
 # define CELL_SIZE 8
 
 // COLORS
@@ -112,6 +112,8 @@ void	move_backward(t_data *data);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
 void	rotate_sight(t_data *data, double ro_speed);
+// 02_EVENTS_HANDLING - 03_player_offset.c
+double	player_offset(t_data *data, char letter);
 
 // 03_GRAPHICS - 00_init_window.c
 int		init_window(t_data *data);
