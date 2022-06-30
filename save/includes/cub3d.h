@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 19:05:41 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/06/30 19:22:14 by msanjuan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -15,8 +27,8 @@
 # include "../includes/get_next_line.h"
 # include "../includes/structs.h"
 
-#define _USE_MATH_DEFINES // to enable the use of macro constants such as M_PI
-#include <math.h>
+# define _USE_MATH_DEFINES // to enable the use of macro constants such as M_PI
+# include <math.h>
 
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
@@ -42,8 +54,8 @@
 // MLX
 # define W_HEIGHT 512
 # define W_WIDTH 1024
-# define T_HEIGHT 150 //64 // tjrs à la ligne 4 du .xpm
-# define T_WIDTH 150 //64
+# define T_HEIGHT 64 //64 // tjrs à la ligne 4 du .xpm
+# define T_WIDTH 64 //64
 # define CELL_SIZE 8
 
 // COLORS
@@ -144,6 +156,8 @@ void	draw_line(void *mlx, void *window, int beginX, int beginY, int endX, int en
 int		handle_keypress(int keysym, t_data *data);
 int		render(t_data *data);
 
+// 05_UTILS - change_orientation_map.c
+void	change_orientation_map(t_data *data, char **map_char);
 // 05_UTILS - error_exit.c
 void	error_exit(t_data *data, char *str);
 // 05_UTILS - free_functions.c

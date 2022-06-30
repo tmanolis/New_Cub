@@ -57,6 +57,7 @@ SRCS = main.c 									\
 	04_Minimap/03_handlers.c					\
 	05_Utils/gnl/get_next_line.c 				\
 	05_Utils/gnl/get_next_line_utils.c 			\
+	05_Utils/change_orientation_map.c 			\
 	05_Utils/check_arg.c 						\
 	05_Utils/error_exit.c						\
 	05_Utils/free_functions.c 					\
